@@ -17,6 +17,8 @@ namespace BestBet
 
         public string key { get; set; }
 
+        public string image_key { get; set; }
+
         public bool active { get; set; }
 
         public string group { get; set; }

@@ -10,32 +10,35 @@
         <viewmodel:SportsViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Content >
-        <Grid BackgroundColor="LightGray">
+        <Grid BackgroundColor="#E8E8E8"	>
         <Grid.RowDefinitions>
-            <RowDefinition Height="75" />
-            <RowDefinition Height="50" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height=".8*" />
+            <RowDefinition Height=".8*" />
+            <RowDefinition Height=".3*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height=".3*" />
+            <RowDefinition Height="3*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width=".15*" />
             <ColumnDefinition Width="*" />
+            <ColumnDefinition Width=".15*" />
         </Grid.ColumnDefinitions>
-            <ImageButton Source="filter.png" Visual="Material" Margin="5,5" HorizontalOptions="EndAndExpand" Clicked="ImageButton_Clicked" Grid.Row="1" Grid.Column="1"/>
-            <ImageButton Source="home.png" Visual="Material"  Margin="5,5" HorizontalOptions="EndAndExpand" Clicked="home_Clicked" Grid.Row="0" Grid.Column="0"/>
+            <ImageButton Source="filter.png" Visual="Material" Margin="0,0" HorizontalOptions="EndAndExpand" Clicked="ImageButton_Clicked" Grid.Row="0" Grid.Column="1"/>
+            <ImageButton Source="wordmark.png" Visual="Material"  Margin="0,0" HorizontalOptions="StartAndExpand" Clicked="home_Clicked" Grid.Row="0" Grid.Column="0"/>
             <!--<Label Text="Moneyline" TextColor="Black" FontSize="Small" HorizontalTextAlignment="Center" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Grid.Row="1" Grid.Column="2"/>
             <Label Text="Spread" TextColor="Black" FontSize="Small" HorizontalTextAlignment="Center" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Grid.Row="1" Grid.Column="3"/>
             <Label Text="Total" TextColor="Black" FontSize="Small" HorizontalTextAlignment="Center" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Grid.Row="1" Grid.Column="4"/>-->
             
-        <CollectionView ItemsSource="{Binding AllSports}" SelectionMode="Single" SelectionChanged="CollectionView_SelectionChanged" ItemsLayout="HorizontalList" Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="0" BackgroundColor="Transparent">
+        <CollectionView ItemsSource="{Binding AllSports}" SelectionMode="Single" SelectionChanged="CollectionView_SelectionChanged" ItemsLayout="HorizontalList" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" BackgroundColor="Transparent">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                    
-                    <Frame Padding="10, 10, 10, 10" BackgroundColor="Transparent" BorderColor="Transparent" HasShadow="True">
+                    <Frame Padding="5, 5, 5, 5" BackgroundColor="Transparent" HasShadow="False">
                         <Frame.Content>
-                          <Frame Padding="10,15,10,15" BackgroundColor="{Binding BackgroundColor}" CornerRadius="15" OutlineColor="CadetBlue" >
+                          <!--<Frame Padding="10,15,10,15" BackgroundColor="{Binding BackgroundColor}" CornerRadius="15" OutlineColor="CadetBlue" >-->
+                               <Frame Padding="0,0,0,0" HasShadow="False" BackgroundColor="Transparent" CornerRadius="0" OutlineColor="Transparent" >
                               <Frame.Content>
-                                  
-                                    <Label Text="{Binding title}" VerticalOptions="Center" VerticalTextAlignment="Center" TextColor="Black"/>
+                                    <Image Source="{Binding image_key}" VerticalOptions="Center" HorizontalOptions="Center" MinimumWidthRequest="80" BackgroundColor="Transparent"/>
                                      
                                 </Frame.Content>
                                     </Frame>
@@ -44,8 +47,12 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-                                 
-           <ListView ItemsSource="{Binding AllMatches}" Grid.Row="2" Grid.ColumnSpan="2" RowHeight="250"
+           <Label Text="WHAT'S" Grid.Column="0" Grid.Row="2" TextColor="Black" Margin="5,5,0,0" FontFamily="Bebas Neue" FontSize="25"/>
+           <Label Text="                HOT" Grid.Column="0" Grid.Row="2" TextColor="#DFAD41" Margin="5,5,0,0" FontFamily="Bebas Neue" FontSize="25"/> 
+
+           <Label Text="UPCOMING" Grid.Column="0" Grid.Row="4" TextColor="Black" Margin="5,5,0,0" FontFamily="Bebas Neue" FontSize="25"/>
+           <Label Text="                     MATCHES" Grid.Column="0" Grid.Row="4" TextColor="#DFAD41" Margin="5,5,0,0" FontFamily="Bebas Neue" FontSize="25"/> 
+           <ListView ItemsSource="{Binding AllMatches}" Grid.Row="5" Grid.ColumnSpan="2" RowHeight="250"
                   IsPullToRefreshEnabled="True"
                   RefreshCommand="{Binding RefreshCommand}"
                   IsRefreshing="{Binding IsRefreshing}"

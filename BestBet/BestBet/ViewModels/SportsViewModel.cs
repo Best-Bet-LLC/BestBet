@@ -103,8 +103,43 @@ namespace BestBet.ViewModels
             {
                 //Console.WriteLine("about to invoke");
                 var result = await _rest.getSports();
+                ObservableCollection<Sport> temp_result = new ObservableCollection<Sport>();
+                foreach (Sport sport in result)
+                {
+                    switch (sport.key)
+                    {
+                        case "americanfootball_ncaaf":
+                            sport.image_key = "ncaa_football_logo.png";
+                            temp_result.Add(sport);
+                            break;
+                        case "americanfootball_nfl":
+                            sport.image_key = "nfl_logo.png";
+                            temp_result.Add(sport);
+                            break;
+                        case "basketball_nba":
+                            sport.image_key = "nba_logo.png";
+                            temp_result.Add(sport);
+                            break;
+                        case "basketball_ncaab":
+                            sport.image_key = "ncaa_basketball_logo.png";
+                            temp_result.Add(sport);
+                            break;
+                        case "icehockey_nhl":
+                            sport.image_key = "nhl_logo.png";
+                            temp_result.Add(sport);
+                            break;
+                        case "baseball_mlb":
+                            sport.image_key = "mlb_logo.png";
+                            temp_result.Add(sport);
+                            break;
+                        default:
+                            sport.image_key = "logo_transparent.png";
+                            //temp_result.Add(sport);
+                            break;
+                    }
+                }
 
-                allSports = result;
+                allSports = temp_result;
                 
                 //Console.WriteLine("invoked api");
              
@@ -141,7 +176,43 @@ namespace BestBet.ViewModels
 
                 }
                 //Console.WriteLine($"{tempMatches.Count}");
-                allMatches = tempMatches;
+                List<Match> temp_result = new List<Match>();
+                foreach (var match in tempMatches)
+                {
+                    foreach(var Sport in allSports)
+                    {
+                        if (Sport.key == match.sport_key)
+                        {
+                            temp_result.Add(match);
+                        }
+                    }
+                    
+                    //switch (match.sport_key)
+                    //{
+
+                    //    case "americanfootball_ncaaf":
+                    //        temp_result.Add(match);
+                    //        break;
+                    //    case "americanfootball_nfl":
+                    //        temp_result.Add(match);
+                    //        break;
+                    //    case "basketball_nba":
+                    //        temp_result.Add(match);
+                    //        break;
+                    //    case "basketball_ncaab":
+                    //        temp_result.Add(match);
+                    //        break;
+                    //    case "icehockey_nhl":
+                    //        temp_result.Add(match);
+                    //        break;
+                    //    case "baseball_mlb":
+                    //        temp_result.Add(match);
+                    //        break;
+                    //    default:
+                    //        break;
+                    //}
+                }
+                allMatches = temp_result;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("AllMatches"));
 
                 return true;

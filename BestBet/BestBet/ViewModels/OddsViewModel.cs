@@ -68,6 +68,31 @@ namespace BestBet.ViewModels
             }
         }
 
+        private List<Match> hotMatches;
+
+        public List<Match> HotMatches
+        {
+            get
+            {
+                return hotMatches;
+            }
+            set
+            {
+                try
+                {
+                    if (value != null)
+                    {
+                        hotMatches = value;
+                        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("HotMatches"));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"crash: {ex.Message}");
+                }
+            }
+        }
+
 
         public OddsViewModel()
         {
@@ -103,10 +128,14 @@ namespace BestBet.ViewModels
                 }
                 Console.WriteLine($"{tempMatches.Count}");
                 allMatches = tempMatches;
+                tempMatches.Clear();
+                for(int i=0; i<3; i++)
+                {
+                    tempMatches.Add(allMatches[i]);
+                }
+                HotMatches = tempMatches;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("AllMatches"));
-                Console.WriteLine($"{allMatches.Count}");
-                Console.WriteLine($"{AllMatches.Count}");
-                Console.WriteLine("invoked api");
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("HotMatches"));
             }
             catch (Exception ex)
             {
