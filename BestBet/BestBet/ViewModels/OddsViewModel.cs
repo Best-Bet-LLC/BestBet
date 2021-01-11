@@ -131,6 +131,7 @@ namespace BestBet.ViewModels
                 tempMatches.Clear();
                 for(int i=0; i<3; i++)
                 {
+                    allMatches[i].isHot = true;
                     tempMatches.Add(allMatches[i]);
                 }
                 HotMatches = tempMatches;

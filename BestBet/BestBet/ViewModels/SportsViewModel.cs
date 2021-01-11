@@ -86,6 +86,28 @@ namespace BestBet.ViewModels
             }
         }
 
+        private List<Match> hotMatches;
+
+        public List<Match> HotMatches
+        {
+            get
+            {
+                return hotMatches;
+            }
+            set
+            {
+                try
+                {
+                    hotMatches = value;
+                    //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("HotMatches"));
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"crash: {ex.Message}");
+                }
+            }
+        }
+
         public SportsViewModel() 
         {
             getSports();
@@ -109,27 +131,27 @@ namespace BestBet.ViewModels
                     switch (sport.key)
                     {
                         case "americanfootball_ncaaf":
-                            sport.image_key = "ncaa_football_logo.png";
+                            sport.image_key = "americanfootball_ncaaf.png";
                             temp_result.Add(sport);
                             break;
                         case "americanfootball_nfl":
-                            sport.image_key = "nfl_logo.png";
+                            sport.image_key = "americanfootball_nfl.png";
                             temp_result.Add(sport);
                             break;
                         case "basketball_nba":
-                            sport.image_key = "nba_logo.png";
+                            sport.image_key = "basketball_nba.png";
                             temp_result.Add(sport);
                             break;
                         case "basketball_ncaab":
-                            sport.image_key = "ncaa_basketball_logo.png";
+                            sport.image_key = "basketball_ncaab.png";
                             temp_result.Add(sport);
                             break;
                         case "icehockey_nhl":
-                            sport.image_key = "nhl_logo.png";
+                            sport.image_key = "icehockey_nhl.png";
                             temp_result.Add(sport);
                             break;
                         case "baseball_mlb":
-                            sport.image_key = "mlb_logo.png";
+                            sport.image_key = "baseball_mlb.png";
                             temp_result.Add(sport);
                             break;
                         default:
@@ -213,7 +235,24 @@ namespace BestBet.ViewModels
                     //}
                 }
                 allMatches = temp_result;
+                tempMatches.Clear();
+                for (int i = 0; i < 3; i++)
+                {
+                    if (i == 1)
+                    {
+                        allMatches[i].isHot = true;
+                        allMatches[i].isNotHot = false;
+                    }
+                    else
+                    {
+                        allMatches[i].isHot = false;
+                        allMatches[i].isNotHot = true;
+                    }
+                    tempMatches.Add(allMatches[i]);
+                }
+                HotMatches = tempMatches;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("AllMatches"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("HotMatches"));
 
                 return true;
 

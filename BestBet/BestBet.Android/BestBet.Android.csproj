@@ -145,23 +145,23 @@
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\ncaa_basketball_logo.png">
+    <AndroidResource Include="Resources\drawable\basketball_ncaab.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\nfl_logo.png">
+    <AndroidResource Include="Resources\drawable\americanfootball_nfl.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\mlb_logo.png">
+    <AndroidResource Include="Resources\drawable\baseball_mlb.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\nhl_logo.png">
+    <AndroidResource Include="Resources\drawable\icehockey_nhl.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\nba_logo.png">
+    <AndroidResource Include="Resources\drawable\basketball_nba.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
@@ -189,7 +189,7 @@
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\ncaa_football_logo.png">
+    <AndroidResource Include="Resources\drawable\americanfootball_ncaaf.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
@@ -214,6 +214,34 @@
       <Generator></Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable\filter.svg">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\filter2.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\barcode.jpg">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\whatshot_icon.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\transparent.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\livegame-icon.jpg">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\nav-arrow.jpg">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\hamburger_menu.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>

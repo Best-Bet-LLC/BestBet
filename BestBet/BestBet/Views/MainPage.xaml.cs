@@ -27,7 +27,7 @@ namespace BestBet
             }
             InitializeComponent();
             updateDB();
-
+            
             //try
             //{
             //    if (Application.Current.Properties["bookmakers"] == null)
@@ -140,5 +140,7 @@ namespace BestBet
         {
             //((CollectionView)sender).SelectedItem = null;
         }
+
+        
     }
 }

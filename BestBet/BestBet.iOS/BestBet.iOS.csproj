@@ -139,17 +139,24 @@
     <BundleResource Include="Resources\WilliamHill.jpg" />
     <BundleResource Include="Resources\filter.png" />
     <BundleResource Include="Resources\home.png" />
-    <BundleResource Include="Resources\nfl_logo.png" />
-    <BundleResource Include="Resources\ncaa_basketball_logo.png" />
-    <BundleResource Include="Resources\mlb_logo.png" />
-    <BundleResource Include="Resources\nhl_logo.png" />
-    <BundleResource Include="Resources\nba_logo.png" />
-    <BundleResource Include="Resources\ncaa_football_logo.png" />
+    <BundleResource Include="Resources\americanfootball_nfl.png" />
+    <BundleResource Include="Resources\basketball_ncaab.png" />
+    <BundleResource Include="Resources\baseball_mlb.png" />
+    <BundleResource Include="Resources\icehockey_nhl.png" />
+    <BundleResource Include="Resources\basketball_nba.png" />
+    <BundleResource Include="Resources\americanfootball_ncaaf.png" />
     <BundleResource Include="Resources\wordmark.png" />
     <BundleResource Include="Resources\typeface2.png" />
     <BundleResource Include="Resources\logo2.png" />
     <BundleResource Include="Resources\cardlogo_transparent.png" />
     <BundleResource Include="Resources\avi.png" />
     <BundleResource Include="Resources\filter.svg" />
+    <BundleResource Include="Resources\filter2.png" />
+    <BundleResource Include="Resources\barcode.jpg" />
+    <BundleResource Include="Resources\whatshot_icon.png" />
+    <BundleResource Include="Resources\transparent.png" />
+    <BundleResource Include="Resources\livegame-icon.jpg" />
+    <BundleResource Include="Resources\nav-arrow.jpg" />
+    <BundleResource Include="Resources\hamburger_menu.png" />
   </ItemGroup>
 </Project>

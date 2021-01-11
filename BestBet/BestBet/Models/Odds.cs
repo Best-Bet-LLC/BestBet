@@ -34,6 +34,10 @@ namespace BestBet.Models
         public string bestAwayOdds { get; set; }
         private string bestHomeSite { get; set; }
         private string bestAwaySite { get; set; }
+        public bool isHot { get; set; }
+        public bool isNotHot { get; set; }
+        public bool isMatchLive { get; set; }
+        public bool isNotLive { get; set; }
 
         public string BestHomeSite
         {
@@ -361,6 +365,8 @@ namespace BestBet.Models
                     {
                     matchTimeString = DateTimeOffset.FromUnixTimeSeconds(commence_time).ToLocalTime().ToString("M/d h:mm tt");
                     IsLive = Color.Transparent;
+                    isNotLive = true;
+                    isMatchLive = false;
                     //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IsLive"));
                     matchTimeColor = Color.Black;
                 }
@@ -368,6 +374,8 @@ namespace BestBet.Models
                     {
                         matchTimeString = "LIVE";
                         IsLive = Color.Red;
+                        isNotLive = false;
+                        isMatchLive = true;
                        // PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IsLive"));
                         matchTimeColor = Color.White;
                     }
