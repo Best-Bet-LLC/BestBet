@@ -60,6 +60,63 @@ namespace BestBet
                 }
             };
 
+
+
+            HorizontalListViewHot.PreRevealAnimationAsync = async (viewCell) =>
+            {
+                viewCell.View.Opacity = 0;
+
+                if (HorizontalListViewHot.ListLayout == HorizontalListViewLayout.Vertical)
+                {
+                    viewCell.View.RotationX = 90;
+                }
+                else
+                {
+                    viewCell.View.RotationY = -90;
+                }
+            };
+
+            HorizontalListViewHot.RevealAnimationAsync = async (viewCell) =>
+            {
+                await viewCell.View.FadeTo(1);
+
+                if (HorizontalListViewHot.ListLayout == HorizontalListViewLayout.Vertical)
+                {
+                    await viewCell.View.RotateXTo(0);
+                }
+                else
+                {
+                    await viewCell.View.RotateYTo(0);
+                }
+            };
+
+            HorizontalListViewSports.PreRevealAnimationAsync = async (viewCell) =>
+            {
+                viewCell.View.Opacity = 0;
+
+                if (HorizontalListViewSports.ListLayout == HorizontalListViewLayout.Vertical)
+                {
+                    viewCell.View.RotationX = 90;
+                }
+                else
+                {
+                    viewCell.View.RotationY = -90;
+                }
+            };
+
+            HorizontalListViewSports.RevealAnimationAsync = async (viewCell) =>
+            {
+                await viewCell.View.FadeTo(1);
+
+                if (HorizontalListViewSports.ListLayout == HorizontalListViewLayout.Vertical)
+                {
+                    await viewCell.View.RotateXTo(0);
+                }
+                else
+                {
+                    await viewCell.View.RotateYTo(0);
+                }
+            };
             //try
             //{
             //    if (Application.Current.Properties["bookmakers"] == null)

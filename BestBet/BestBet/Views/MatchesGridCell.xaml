@@ -4,23 +4,23 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewModels="clr-namespace:BestBet.ViewModels"
-    Margin="5,0,5,0"
+    Margin="0,0,0,0"
     HasShadow="False"
-    BorderColor="Transparent"
+    BorderColor="{StaticResource Background_Gray}"
     BackgroundColor="{StaticResource Background_Gray}"
     >
     
     
-        <RelativeLayout HeightRequest="200">
-            <StackLayout HeightRequest="200">
-                    <Grid BackgroundColor="#EFEFEF" Margin="0,5,0,5"	>
+        <RelativeLayout HeightRequest="200" WidthRequest="175" BackgroundColor="{StaticResource Background_Gray}">
+            <StackLayout HeightRequest="200" WidthRequest="175" BackgroundColor="{StaticResource Background_Gray}">
+                    <Grid BackgroundColor="{StaticResource Background_Gray}" Margin="5,5,5,5"	>
                                     <Grid.RowDefinitions>
                                         
                                         <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
                                     
                                   
-                                           <Frame Padding="5,0,0,5" HasShadow="True" BackgroundColor="White" CornerRadius="0" OutlineColor="#EFEFEF" Grid.Row="0" BorderColor="Transparent" IsClippedToBounds="True">
+                                           <Frame Padding="5,0,0,5" HasShadow="True" BackgroundColor="White" CornerRadius="0" Grid.Row="0" IsClippedToBounds="True">
                                                 <Frame.Content>
                                                 <Grid BackgroundColor="White" Margin="0,0,0,0">
                                                     <Grid.RowDefinitions>
@@ -53,7 +53,7 @@
                                     </StackLayout>
                                    <Image Source="transparent.png" IsVisible="{Binding isNotHot}" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="50"/>
                                     
-                                    <Image Source="whatshot_icon.png" Margin="0,0,0,0" IsVisible="{Binding isHot}" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="30" />
+                                    <Image Source="whatshot_icon.png" Margin="5,0,0,0" IsVisible="{Binding isHot}" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="20" />
                                      
                          </RelativeLayout>
   

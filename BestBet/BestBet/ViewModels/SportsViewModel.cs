@@ -110,8 +110,9 @@ namespace BestBet.ViewModels
 
         public SportsViewModel()
         {
-            Task.Run(async () => await getSports());
-            Task.Run(async () => await getUpcomingMatches());
+            getSports();
+            //Task.Run(async () => await
+            getUpcomingMatches();
         }
 
         public SportsViewModel(bool refreshUpcomingMatches)

@@ -22,36 +22,95 @@ ios:Page.UseSafeArea="true"
     <ContentPage.Resources>
         <ResourceDictionary>
 
-            <DataTemplate x:Key="GridDudeTemplate">
-                <sho:DraggableViewCell x:Name="DraggableViewCell">
+            <DataTemplate x:Key="HorizontalDudeTemplateMatches">
+                 <sho:DraggableViewCell x:Name="DraggableViewCell">
                     <ContentView
                         xamEffects:Commands.Tap="{Binding TapCommand}"
                         xamEffects:Commands.TapParameter="{Binding .}"
-                        xamEffects:TouchEffect.Color="{StaticResource Accent}">
+                        xamEffects:TouchEffect.Color="{StaticResource Accent}"
+                        BackgroundColor="{StaticResource Background_Gray}"
+                        IsClippedToBounds="True">
                         
-                        <views:MatchesGridCell
-                            Margin="0,0,0,0"
-                            Padding="0,0,0,0"
-                            BackgroundColor="{StaticResource Background_Gray}"
-                            CornerRadius="0"
-                           BorderColor="{StaticResource Accent}">
+                            <views:MatchesGridCell
+                               Margin="0,0,0,0"
+                                Padding="0,0,0,0"
+                                BackgroundColor="{StaticResource Background_Gray}"
+                                CornerRadius="0"
+                                BorderColor="{StaticResource Background_Gray}">
                                 <views:MatchesGridCell.Triggers>
                                     <DataTrigger
-                            Binding="{Binding Source={x:Reference DraggableViewCell}, Path=IsDragAndDropping}"
-                            TargetType="views:MatchesGridCell"
-                            Value="True">
+                                        Binding="{Binding Source={x:Reference DraggableViewCell}, Path=IsDragAndDropping}"
+                                        TargetType="views:MatchesGridCell"
+                                        Value="True">
                                         <Setter Property="BackgroundColor" Value="{StaticResource Background_Gray}" />
                                     </DataTrigger>
                                 </views:MatchesGridCell.Triggers>
                             </views:MatchesGridCell>
-                       
+                        
                     </ContentView>
                 </sho:DraggableViewCell>
             </DataTemplate>
 
+            <DataTemplate x:Key="HorizontalDudeTemplate">
+                <sho:DraggableViewCell x:Name="DraggableViewCell">
+                    <ContentView
+                        xamEffects:Commands.Tap="{Binding TapCommand}"
+                        xamEffects:Commands.TapParameter="{Binding .}"
+                        xamEffects:TouchEffect.Color="{StaticResource Accent}"
+                        BackgroundColor="{StaticResource Background_Gray}"
+                        IsClippedToBounds="True">
+                        
+                            <views:SportsFilter
+                               Margin="0,0,0,0"
+                                Padding="0,0,0,0"
+                                BackgroundColor="{StaticResource Background_Gray}"
+                                CornerRadius="0"
+                                BorderColor="{StaticResource Background_Gray}">
+                                <views:SportsFilter.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding Source={x:Reference DraggableViewCell}, Path=IsDragAndDropping}"
+                                        TargetType="views:SportsFilter"
+                                        Value="True">
+                                        <Setter Property="BackgroundColor" Value="{StaticResource Background_Gray}" />
+                                    </DataTrigger>
+                                </views:SportsFilter.Triggers>
+                            </views:SportsFilter>
+                        
+                    </ContentView>
+                </sho:DraggableViewCell>
+            </DataTemplate>
+
+
+            <DataTemplate x:Key="VerticalDudeTemplate">
+                <sho:DraggableViewCell x:Name="DraggableViewCell">
+                    <ContentView>
+                        <!--<sho:Shadows
+                            x:Name="Shadow"
+                            CornerRadius="10"
+                            Shades="{StaticResource ThinDarkerNeumorphism}">
+                            <views:SillyListCell
+                                Margin="16,13,16,13"
+                                BackgroundColor="{StaticResource DarkerSurface}"
+                                CornerRadius="10">
+                                <views:SillyListCell.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding Source={x:Reference DraggableViewCell}, Path=IsDragAndDropping}"
+                                        TargetType="views:SillyListCell"
+                                        Value="True">
+                                        <Setter Property="BackgroundColor" Value="{StaticResource DarkSurface}" />
+                                    </DataTrigger>
+                                </views:SillyListCell.Triggers>
+                            </views:SillyListCell>
+                        </sho:Shadows>-->
+                    </ContentView>
+                </sho:DraggableViewCell>
+            </DataTemplate>
+
+
+
         <views:DudeTemplateSelector
                 x:Key="DudeTemplateSelector"
-                GridTemplate="{StaticResource GridDudeTemplate}"
+                GridTemplate="{StaticResource HorizontalDudeTemplateMatches}"
              HorizontalTemplate="{StaticResource HorizontalDudeTemplate}"
                 VerticalTemplate="{StaticResource VerticalDudeTemplate}" />
 
@@ -81,7 +140,7 @@ ios:Page.UseSafeArea="true"
 
             <sho:HorizontalListView
                 x:Name="HorizontalListViewSports"
-                CollectionPadding="10,30,10,75"
+                CollectionPadding="0,0,0,0"
                 Margin="5,0,5,0"
                 CurrentIndex="{Binding CurrentIndex}"
                 EnableDragAndDrop="False"
@@ -125,19 +184,19 @@ ios:Page.UseSafeArea="true"
 
             <sho:HorizontalListView
                 x:Name="HorizontalListViewHot"
-                CollectionPadding="10,30,10,75"
-                Margin="5,0,5,0"
+                CollectionPadding="5"
+                Margin="5"
                 CurrentIndex="{Binding CurrentIndex}"
                 EnableDragAndDrop="False"
-                
+                ItemHeight="200"
+                ItemWidth="175"
                 
                 ItemTemplate="{StaticResource DudeTemplateSelector}"
                 ItemsSource="{Binding HotMatches}"
-                ListLayout="Linear"
+                ListLayout="Grid"
                 TapCommand="{Binding TapCommand}"
                 
-                ScrollBeganCommand="{Binding OnScrollBeginCommand}"
-                ScrollEndedCommand="{Binding OnScrollEndCommand}"
+               
                 SnapStyle="Center"
                
                 ColumnCount="2"
@@ -152,19 +211,19 @@ ios:Page.UseSafeArea="true"
 
             <sho:HorizontalListView
                 x:Name="HorizontalListView"
-                CollectionPadding="10,30,10,75"
-                Margin="5,0,5,0"
+                CollectionPadding="5"
+                Margin="5"
                 CurrentIndex="{Binding CurrentIndex}"
                 EnableDragAndDrop="False"
-                
+                ItemHeight="200"
+                ItemWidth="175"
                 
                 ItemTemplate="{StaticResource DudeTemplateSelector}"
                 ItemsSource="{Binding AllMatches}"
-                ListLayout="Linear"
+                ListLayout="Grid"
                 TapCommand="{Binding TapCommand}"
                 
-                ScrollBeganCommand="{Binding OnScrollBeginCommand}"
-                ScrollEndedCommand="{Binding OnScrollEndCommand}"
+                
                 SnapStyle="Center"
                
                 ColumnCount="2"
