@@ -1,5 +1,108 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Application xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="BestBet.App">
-    <Application.Resources>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="BestBet.App">
+    <Application.Resources xmlns:customViews="clr-namespace:Sharpnado.Presentation.Forms.CustomViews;assembly=Sharpnado.TaskLoaderView"
+             xmlns:sho="http://sharpnado.com">
+
+      
+
+    <Color x:Key="Primary">#dfad41</Color>
+    <Color x:Key="Accent">#000000</Color>
+    
+
+    <!--<Color x:Key="DarkSurface">#383838</Color> change this
+
+    <Color x:Key="DarkerSurface">#323232</Color>  change this
+
+    <Color x:Key="LightSurface">#FAF8F9</Color>
+    <Color x:Key="AcrylicSurface">#E4E4E4</Color>
+    <Color x:Key="NeumorphismSurface">#F0F0F3</Color>-->
+    <Color x:Key="Background_Gray">#EFEFEF</Color>
+
+    <!--<Color x:Key="DarkOverlay">#80000000</Color>-->
+
+
+    <!--<sho:SingleShade
+        x:Key="DarkBottomShadow"
+        BlurRadius="6"
+        Opacity="1"
+        Offset="0,8"
+        Color="#2c2c2c" />
+
+    <sho:ImmutableShades x:Key="NoShadow" />
+
+    <sho:ImmutableShades x:Key="DarkNeumorphism">
+        <sho:Shade
+            BlurRadius="6"
+            Opacity="1"
+            Offset="-8,-8"
+            Color="#404040" />
+        <sho:Shade
+            BlurRadius="6"
+            Opacity="1"
+            Offset="8,8"
+            Color="#303030" />
+    </sho:ImmutableShades>
+
+    <sho:ImmutableShades x:Key="ThinDarkNeumorphism">
+        <sho:Shade
+            BlurRadius="6"
+            Opacity="1"
+            Offset="-8,-6"
+            Color="#404040" />
+        <sho:Shade
+            BlurRadius="6"
+            Opacity="1"
+            Offset="8,6"
+            Color="#303030" />
+    </sho:ImmutableShades>
+
+    <sho:ImmutableShades x:Key="DarkerNeumorphism">
+        <sho:Shade
+            BlurRadius="6"
+            Opacity="1"
+            Offset="8,8"
+            Color="#2b2b2b" />
+        <sho:Shade
+            BlurRadius="6"
+            Opacity="1"
+            Offset="-8,-8"
+            Color="#3a3a3a" />
+    </sho:ImmutableShades>
+
+    <sho:ImmutableShades x:Key="ThinDarkerNeumorphism">
+        <sho:Shade
+            BlurRadius="3"
+            Opacity="1"
+            Offset="5,5"
+            Color="#2b2b2b" />
+        <sho:Shade
+            BlurRadius="3"
+            Opacity="1"
+            Offset="-5,-5"
+            Color="#3a3a3a" />
+    </sho:ImmutableShades>
+
+    <sho:ImmutableShades x:Key="ThinAccentNeumorphism">
+        <sho:Shade
+            BlurRadius="3"
+            Opacity="1"
+            Offset="5,5"
+            Color="#FA0061" />
+        <sho:Shade
+            BlurRadius="3"
+            Opacity="1"
+            Offset="-5,-5"
+            Color="#FF0266" />
+    </sho:ImmutableShades>
+
+    <sho:ImmutableShades x:Key="DraggingShadows">
+        <sho:Shade
+            BlurRadius="6"
+            Opacity="0.5"
+            Offset="20,20"
+            Color="#404040" />
+    </sho:ImmutableShades>-->
+        
     </Application.Resources>
 </Application>

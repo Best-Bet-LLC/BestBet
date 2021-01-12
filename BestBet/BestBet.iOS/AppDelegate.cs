@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using Sharpnado;
 using Foundation;
 using UIKit;
 
@@ -22,7 +22,10 @@ namespace BestBet.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            Sharpnado.HorizontalListView.iOS.SharpnadoInitializer.Initialize();
+
             global::Xamarin.Forms.Forms.Init();
+            Sharpnado.HorizontalListView.iOS.SharpnadoInitializer.Initialize();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

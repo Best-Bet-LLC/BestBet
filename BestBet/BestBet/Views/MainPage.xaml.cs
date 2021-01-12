@@ -8,6 +8,7 @@ using BestBet.ViewModels;
 using BestBet.Views;
 using Xamarin.Forms;
 using SQLite;
+using Sharpnado.HorizontalListView.RenderedViews;
 
 namespace BestBet
 {
@@ -26,14 +27,45 @@ namespace BestBet
                 App.sport = "upcoming";
             }
             InitializeComponent();
+
             updateDB();
-            
+            Sharpnado.HorizontalListView.Initializer.Initialize(true, true);
+            Sharpnado.Tabs.Initializer.Initialize(true, true);
+            Sharpnado.Shades.Initializer.Initialize(loggerEnable: true, true);
+            HorizontalListView.PreRevealAnimationAsync = async (viewCell) =>
+            {
+                viewCell.View.Opacity = 0;
+
+                if (HorizontalListView.ListLayout == HorizontalListViewLayout.Vertical)
+                {
+                    viewCell.View.RotationX = 90;
+                }
+                else
+                {
+                    viewCell.View.RotationY = -90;
+                }
+            };
+
+            HorizontalListView.RevealAnimationAsync = async (viewCell) =>
+            {
+                await viewCell.View.FadeTo(1);
+
+                if (HorizontalListView.ListLayout == HorizontalListViewLayout.Vertical)
+                {
+                    await viewCell.View.RotateXTo(0);
+                }
+                else
+                {
+                    await viewCell.View.RotateYTo(0);
+                }
+            };
+
             //try
             //{
             //    if (Application.Current.Properties["bookmakers"] == null)
             //    {
             //        Application.Current.Properties["bookmakers"] = new List<string>() { "DraftKings", "Unibet", "PointsBet (US)", "BetOnline.ag", "Betfair", "BetRivers", "Bookmaker", "Bovada", "FanDuel", "GTbets", "Intertops", "LowVig.ag", "MyBookie.ag", "William Hill (US)" };
-                    
+
             //    }
             //} catch (KeyNotFoundException keyEx)
             //{
@@ -43,7 +75,7 @@ namespace BestBet
             //    Console.WriteLine($"crash: {ex.Message}");
             //}
 
-            
+
             //BindingContext = this;
         }
 
@@ -106,7 +138,7 @@ namespace BestBet
             var viewModel = (SportsViewModel)((ImageButton)sender).BindingContext;
            
             App.sport = "upcoming";
-            viewModel.getSports();
+            await viewModel.getSports();
             await viewModel.getUpcomingMatches();
         }
 

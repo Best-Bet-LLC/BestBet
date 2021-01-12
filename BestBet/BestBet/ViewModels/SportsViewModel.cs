@@ -108,10 +108,10 @@ namespace BestBet.ViewModels
             }
         }
 
-        public SportsViewModel() 
+        public SportsViewModel()
         {
-            getSports();
-            getUpcomingMatches();
+            Task.Run(async () => await getSports());
+            Task.Run(async () => await getUpcomingMatches());
         }
 
         public SportsViewModel(bool refreshUpcomingMatches)
@@ -119,7 +119,7 @@ namespace BestBet.ViewModels
            
         }
 
-        public async void getSports()
+        public async Task<bool> getSports()
         {
             try
             {
@@ -154,6 +154,34 @@ namespace BestBet.ViewModels
                             sport.image_key = "baseball_mlb.png";
                             temp_result.Add(sport);
                             break;
+                        case "soccer_turkey_super_league":
+                            sport.image_key = "soccer_turkey_super_league.png";
+                            temp_result.Add(sport);
+                            break;
+                        case "soccer_spain_segunda_division":
+                            sport.image_key = "soccer_spain_segunda_division.png";
+                            temp_result.Add(sport);
+                            break;
+                        case "soccer_spain_la_liga":
+                            sport.image_key = "soccer_spain_la_liga.png";
+                            temp_result.Add(sport);
+                            break;
+                        case "soccer_germany_bundesliga2":
+                            sport.image_key = "soccer_germany_bundesliga2.png";
+                            temp_result.Add(sport);
+                            break;
+                        case "soccer_france_ligue_two":
+                            sport.image_key = "soccer_france_ligue_two.png";
+                            temp_result.Add(sport);
+                            break;
+                        case "soccer_belgium_first_div":
+                            sport.image_key = "soccer_belgium_first_div.png";
+                            temp_result.Add(sport);
+                            break;
+                        case "soccer_italy_serie_a":
+                            sport.image_key = "soccer_italy_serie_a.png";
+                            temp_result.Add(sport);
+                            break;
                         default:
                             sport.image_key = "logo_transparent.png";
                             //temp_result.Add(sport);
@@ -162,12 +190,14 @@ namespace BestBet.ViewModels
                 }
 
                 allSports = temp_result;
+                return true;
                 
                 //Console.WriteLine("invoked api");
              
             } catch (Exception ex)
             {
                 Console.WriteLine($"crash: {ex.Message}");
+                return false;
             }
         }
 
@@ -199,6 +229,7 @@ namespace BestBet.ViewModels
                 }
                 //Console.WriteLine($"{tempMatches.Count}");
                 List<Match> temp_result = new List<Match>();
+                var counter = 0;
                 foreach (var match in tempMatches)
                 {
                     foreach(var Sport in allSports)
@@ -206,8 +237,19 @@ namespace BestBet.ViewModels
                         if (Sport.key == match.sport_key)
                         {
                             temp_result.Add(match);
+                            counter++;
                         }
+
+                 
                     }
+                    if (counter == 1)
+                    {
+                        counter = 0;
+                    } else
+                    {
+                        temp_result.Add(match);
+                    }
+                    
                     
                     //switch (match.sport_key)
                     //{
