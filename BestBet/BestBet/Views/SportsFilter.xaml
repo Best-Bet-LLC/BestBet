@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Frame
+    x:Class="BestBet.Views.SportsFilter"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModels="clr-namespace:BestBet.ViewModels">
+    <Frame
+        CornerRadius="35"
+        HeightRequest="70"
+        HorizontalOptions="Center"
+        IsClippedToBounds="True"
+        VerticalOptions="Center"
+        WidthRequest="70">
+        <Image
+            Aspect="AspectFill"
+            Source="{Binding image_key}"
+           />
+    </Frame>
+</Frame>
