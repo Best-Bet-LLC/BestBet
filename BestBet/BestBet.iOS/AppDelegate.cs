@@ -4,6 +4,7 @@ using System.Linq;
 using Sharpnado;
 using Foundation;
 using UIKit;
+using Forms9Patch;
 
 namespace BestBet.iOS
 {
@@ -26,6 +27,7 @@ namespace BestBet.iOS
 
             global::Xamarin.Forms.Forms.Init();
             Sharpnado.HorizontalListView.iOS.SharpnadoInitializer.Initialize();
+            Forms9Patch.iOS.Settings.Initialize(this);
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

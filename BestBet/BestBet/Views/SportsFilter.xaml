@@ -4,9 +4,9 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewModels="clr-namespace:BestBet.ViewModels"
-    BackgroundColor="{StaticResource Background_Gray}">
-    <Frame
-        CornerRadius="0"
+    BackgroundColor="{StaticResource Background_Gray}"
+    xmlns:Forms9Patch="clr-namespace:Forms9Patch;assembly=Forms9Patch">
+    <Forms9Patch:Frame
         Padding="0,0,0,0"
         Margin="5,0,5,0"
         HeightRequest="70"
@@ -22,5 +22,5 @@
             BackgroundColor="{StaticResource Background_Gray}"
             
            />
-    </Frame>
+    </Forms9Patch:Frame>
 </Frame>

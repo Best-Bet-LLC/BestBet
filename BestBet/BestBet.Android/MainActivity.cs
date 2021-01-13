@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Sharpnado.HorizontalListView.Droid;
 
 namespace BestBet.Droid
 {
@@ -18,9 +19,11 @@ namespace BestBet.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
-
+            SharpnadoInitializer.Initialize();
+            XamEffects.Droid.Effects.Init();
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            Forms9Patch.Droid.Settings.Initialize(this);
             LoadApplication(new App());
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)

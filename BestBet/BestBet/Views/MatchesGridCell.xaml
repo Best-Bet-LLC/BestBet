@@ -8,6 +8,7 @@
     HasShadow="False"
     BorderColor="{StaticResource Background_Gray}"
     BackgroundColor="{StaticResource Background_Gray}"
+    xmlns:Forms9Patch="clr-namespace:Forms9Patch;assembly=Forms9Patch"
     >
     
     
@@ -20,8 +21,8 @@
                                     </Grid.RowDefinitions>
                                     
                                   
-                                           <Frame Padding="5,0,0,5" HasShadow="True" BackgroundColor="White" CornerRadius="0" Grid.Row="0" IsClippedToBounds="True">
-                                                <Frame.Content>
+                                           <Forms9Patch:Frame Padding="5,0,0,5" HasShadow="True" BackgroundColor="White" Grid.Row="0" IsClippedToBounds="True">
+                                                <Forms9Patch:Frame.Content>
                                                 <Grid BackgroundColor="White" Margin="0,0,0,0">
                                                     <Grid.RowDefinitions>
                                                         <RowDefinition Height="*" />
@@ -38,14 +39,14 @@
                                                     <Label Text="{Binding awayTeam}" Margin="0,5,5,0" FontFamily="Bebas Neue" TextColor="#DFAD41" FontSize="23"  Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="1" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HorizontalTextAlignment="Center" MaxLines="2" LineBreakMode="WordWrap"/>
 
                                                     <Image Source="livegame_icon.jpg" IsVisible="{Binding IsMatchLive}" Grid.Row="0" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Start"/>
-                                                    <Label Text="{Binding matchTime}" IsVisible="{Binding isNotLive}" Margin="0,0,-20,0" FontFamily="Bebas Neue" FontSize="20" TextColor="{Binding IsLive}" Rotation="-90" Grid.Row="0" Grid.Column="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="End" VerticalTextAlignment="Center" MaxLines="1"/>
+                                                    <Forms9Patch:Label Text="{Binding matchTime}" IsVisible="{Binding isNotLive}" Margin="0,0,-20,0" FontFamily="Bebas Neue" FontSize="20" TextColor="{Binding IsLive}" Rotation="-90" Grid.Row="0" Grid.Column="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="End" VerticalTextAlignment="Center" MaxLines="1"/>
                                                     <Image Source="barcode.jpg" Margin="0,-20,5,0" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
                                                     <Image Source="{Binding sport_key}" Grid.Row="3" Grid.Column="1" VerticalOptions="Start" HorizontalOptions="CenterAndExpand" />
                                     
 
                                                     </Grid>
-                                                </Frame.Content>
-                                              </Frame>
+                                                </Forms9Patch:Frame.Content>
+                                              </Forms9Patch:Frame>
                                        
                                     
                                     

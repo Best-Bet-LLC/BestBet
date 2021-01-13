@@ -9,15 +9,23 @@
              xmlns:sho="http://sharpnado.com"
              xmlns:views="clr-namespace:BestBet.Views"
              xmlns:xamEffects="clr-namespace:XamEffects;assembly=XamEffects"
+             xmlns:Forms9Patch="clr-namespace:Forms9Patch;assembly=Forms9Patch"
 ios:Page.UseSafeArea="true"
              x:Class="BestBet.MainPage"
              Visual="Material"
              Title="Best Bet"
-             BackgroundColor="LightGray"
-             NavigationPage.HasNavigationBar="false"  >
+             BackgroundColor="{StaticResource Background_Gray}"
+             NavigationPage.HasNavigationBar="False"  >
     <ContentPage.BindingContext>
         <viewmodel:SportsViewModel/>
     </ContentPage.BindingContext>
+
+    <!--<ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="20, 40, 20, 20" />
+            <On Platform="Android, WinPhone, Windows" Value="20" />
+        </OnPlatform>
+    </ContentPage.Padding>-->
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -120,10 +128,10 @@ ios:Page.UseSafeArea="true"
 
     </ContentPage.Resources>
     <ContentPage.Content >
-        <Grid BackgroundColor="#EFEFEF"	>
+        <Grid BackgroundColor="{StaticResource Background_Gray}"	>
         <Grid.RowDefinitions>
-            <RowDefinition Height=".4*" />
-            <RowDefinition Height=".4*" />
+            <RowDefinition Height=".35*" />
+            <RowDefinition Height=".35*" />
             <RowDefinition Height=".11*" />
             <RowDefinition Height="*" />
             <RowDefinition Height=".11*" />
@@ -134,8 +142,8 @@ ios:Page.UseSafeArea="true"
              <ColumnDefinition Width="*"/>
              <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-            <ImageButton Source="hamburger_menu.png" Visual="Material" Margin="0,0,10,0" HorizontalOptions="EndAndExpand" Clicked="ImageButton_Clicked" Grid.Row="0" Grid.Column="2"  WidthRequest="50"/>
-            <ImageButton Source="wordmark.png" Visual="Material"  Margin="0,0" HorizontalOptions="StartAndExpand" Clicked="home_Clicked" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
+            <ImageButton Source="hamburger_menu.png" BackgroundColor="{StaticResource Background_Gray}" Visual="Material" Margin="0,0,10,0" HorizontalOptions="EndAndExpand" Clicked="ImageButton_Clicked" Grid.Row="0" Grid.Column="2"  WidthRequest="50"/>
+            <ImageButton Source="wordmark.png" Visual="Material" BackgroundColor="{StaticResource Background_Gray}"  Margin="0,0" HorizontalOptions="StartAndExpand" Clicked="home_Clicked" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
 
 
             <sho:HorizontalListView
@@ -177,10 +185,15 @@ ios:Page.UseSafeArea="true"
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>-->
-           <Label Text="WHAT'S" Grid.Column="0"  Grid.Row="2" TextColor="Black" Margin="5,5,0,0" FontFamily="Bebas Neue" FontSize="25"/>
-           <Label Text="                HOT"  Grid.Column="0" Grid.Row="2" TextColor="#DFAD41" Margin="5,5,0,0" FontFamily="Bebas Neue" FontSize="25"/> 
+            <StackLayout Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,0" Padding="0" Orientation="Horizontal">
 
-            
+                <Forms9Patch:Label Text="WHAT'S" HorizontalOptions="End" TextColor="Black"  FontFamily="Bebas Neue" FontSize="25" Margin="0,0,0,0" Padding="0"/>
+                <Forms9Patch:Label Text="HOT"  HorizontalOptions="Start" TextColor="#DFAD41" FontFamily="Bebas Neue" FontSize="25" Margin="0" Padding="0"/> 
+           
+            </StackLayout>
+
+           
+         
 
             <sho:HorizontalListView
                 x:Name="HorizontalListViewHot"
@@ -205,9 +218,12 @@ ios:Page.UseSafeArea="true"
                 Grid.ColumnSpan="3"/>
 
 
-           <Label Text="UPCOMING"  Grid.Column="0" Grid.Row="4" TextColor="Black" Margin="5,5,0,0" FontFamily="Bebas Neue" FontSize="25"/>
-           <Label Text="                     MATCHES"  Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" TextColor="{StaticResource Primary}" Margin="5,5,0,0" FontFamily="Bebas Neue" FontSize="25"/> 
-
+           
+               <StackLayout Orientation="Horizontal" Padding="0" Margin="0" Grid.Row="4" Grid.ColumnSpan="2">
+                   <Forms9Patch:Label Text="TODAY'S" TextColor="Black"  HorizontalOptions="End" FontFamily="Bebas Neue" FontSize="25" Margin="0,0,0,0" Padding="0"/>
+                    <Forms9Patch:Label Text="BETS"  TextColor="#DFAD41" HorizontalOptions="Start" FontFamily="Bebas Neue" FontSize="25" Margin="0,0,0,0" Padding="0"/> 
+                </StackLayout>
+                
 
             <sho:HorizontalListView
                 x:Name="HorizontalListView"
