@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ffSvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:lottie="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+             x:Class="BestBet.Views.SplashScreen">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="{StaticResource Background_Gray}">
+            <Grid>
+                <Grid.RowDefinitions>
+                     <RowDefinition Height="*" />
+                     <RowDefinition Height=".75*" />
+                     <RowDefinition Height=".75*" />
+                </Grid.RowDefinitions>
+            </Grid>
+            <Image Source="cardlogo_transparent.png" />
+            <Image Source="wordmark_edited" />
+            <lottie:AnimationView Animation="Resources.splashscreen_gold.json"
+                         AnimationSource="EmbeddedResource"
+                         RepeatMode="Infinite"
+                         AutoPlay="True"
+                         HeightRequest="300"
+                         VerticalOptions="EndAndExpand"
+                         HorizontalOptions="FillAndExpand" />
+        </StackLayout>
+        
+    </ContentPage.Content>
+    </ContentPage>
