@@ -135,6 +135,12 @@
     <PackageReference Include="Forms9Patch">
       <Version>2.4.9</Version>
     </PackageReference>
+    <PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie">
+      <Version>4.0.8</Version>
+    </PackageReference>
+    <PackageReference Include="Com.Airbnb.iOS.Lottie">
+      <Version>2.5.13</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -191,5 +197,12 @@
     <BundleResource Include="Resources\congratslogo.png" />
     <BundleResource Include="Resources\.DS_Store" />
     <BundleResource Include="Resources\wordmark_edited.png" />
+    <BundleResource Include="basketball_euroleague.png" />
+    <BundleResource Include="Resources\aussierules_afl.png" />
+    <BundleResource Include="Resources\cricket_big_bash.png" />
+    <BundleResource Include="Resources\basketball_euroleague.jpg" />
+    <BundleResource Include="Resources\basketball_euroleague.png" />
+    <BundleResource Include="Resources\splashlogo.png" />
+    <BundleResource Include="Resources\logo.png" />
   </ItemGroup>
 </Project>

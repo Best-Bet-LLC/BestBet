@@ -11,7 +11,7 @@
         Margin="5,0,5,0"
         HeightRequest="70"
         HorizontalOptions="Center"
-        IsClippedToBounds="True"
+        IsClippedToBounds="False"
         VerticalOptions="Center"
         BackgroundColor="{StaticResource Background_Gray}"
         WidthRequest="70">

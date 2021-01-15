@@ -183,6 +183,18 @@ namespace BestBet.ViewModels
                             sport.image_key = "soccer_italy_serie_a.png";
                             temp_result.Add(sport);
                             break;
+                        case "aussierules_afl":
+                            sport.image_key = "aussierules_afl.png";
+                            temp_result.Add(sport);
+                            break;
+                        case "basketball_euroleague":
+                            sport.image_key = "basketball_euroleague.png";
+                            temp_result.Add(sport);
+                            break;
+                        case "cricket_big_bash":
+                            sport.image_key = "cricket_big_bash.png";
+                            temp_result.Add(sport);
+                            break;
                         default:
                             sport.image_key = "logo_transparent.png";
                             //temp_result.Add(sport);

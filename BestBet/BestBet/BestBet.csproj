@@ -27,6 +27,7 @@
     <PackageReference Include="Sharpnado.Tabs" Version="2.0.1" />
     <PackageReference Include="XamEffects" Version="1.6.3" />
     <PackageReference Include="Forms9Patch" Version="2.4.9" />
+    <PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie" Version="4.0.8" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
@@ -34,5 +35,14 @@
     <Folder Include="Views\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Data\" />
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Resources\splashscreen.json" />
+    <None Remove="Resources\splashscreen_gold.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\splashscreen.json" />
+    <EmbeddedResource Include="Resources\splashscreen_gold.json" />
   </ItemGroup>
 </Project>

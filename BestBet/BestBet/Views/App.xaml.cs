@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using BestBet.Data;
 using BestBet.Services;
+using BestBet.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -48,7 +49,7 @@ namespace BestBet
             Sharpnado.HorizontalListView.Initializer.Initialize(true, false);
             //FlowListView.Init();
             DependencyService.Register<OddsAPIInterface, OddsAPI>();
-            MainPage = new NavigationPage(new MainPage());
+            MainPage = new NavigationPage(new SplashScreen());
            
         }
 

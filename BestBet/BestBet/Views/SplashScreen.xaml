@@ -3,25 +3,27 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ffSvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              xmlns:lottie="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
-             x:Class="BestBet.Views.SplashScreen">
+             x:Class="BestBet.Views.SplashScreen"
+             BackgroundColor="{StaticResource Background_Gray}"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <StackLayout BackgroundColor="{StaticResource Background_Gray}">
-            <Grid>
+        <StackLayout BackgroundColor="Black">
+            <Grid BackgroundColor="Black">
                 <Grid.RowDefinitions>
                      <RowDefinition Height="*" />
-                     <RowDefinition Height=".75*" />
-                     <RowDefinition Height=".75*" />
+                    <RowDefinition Height=".3*" />
                 </Grid.RowDefinitions>
             </Grid>
-            <Image Source="cardlogo_transparent.png" />
-            <Image Source="wordmark_edited" />
+            <Image Source="logo.png" Grid.Row="0" HeightRequest="300" VerticalOptions="EndAndExpand"/>
+            <!--<Image Source="wordmark_edited" Grid.Row="1"/>-->
             <lottie:AnimationView Animation="Resources.splashscreen_gold.json"
                          AnimationSource="EmbeddedResource"
                          RepeatMode="Infinite"
                          AutoPlay="True"
-                         HeightRequest="300"
-                         VerticalOptions="EndAndExpand"
-                         HorizontalOptions="FillAndExpand" />
+                         HeightRequest="200"
+                         VerticalOptions="CenterAndExpand"
+                         HorizontalOptions="FillAndExpand"
+                         Grid.Row="1"/>
         </StackLayout>
         
     </ContentPage.Content>

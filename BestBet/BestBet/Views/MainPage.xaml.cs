@@ -136,6 +136,11 @@ namespace BestBet
             //BindingContext = this;
         }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+        }
+
         private async void updateDB()
         {
             //App.Database.DropTable();
@@ -161,11 +166,6 @@ namespace BestBet
                 }
             }
             
-        }
-
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
         }
 
         void SportTapped(System.Object sender, Xamarin.Forms.ItemTappedEventArgs e)
