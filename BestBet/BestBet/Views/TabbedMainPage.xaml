@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            mc:Ignorable="d"
+             xmlns:viewmodel="clr-namespace:BestBet.ViewModels" 
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:sho="http://sharpnado.com"
+             xmlns:views="clr-namespace:BestBet.Views"
+             
+             xmlns:xamEffects="clr-namespace:XamEffects;assembly=XamEffects"
+             
+             xmlns:Forms9Patch="clr-namespace:Forms9Patch;assembly=Forms9Patch"
+ios:Page.UseSafeArea="true"
+             x:Class="BestBet.Views.TabbedMainPage"
+             Visual="Material"
+             Title="Best Bet"
+             BackgroundColor="{StaticResource Background_Gray}"
+             NavigationPage.HasNavigationBar="False"  >
+    <ContentPage.BindingContext>
+        <viewmodel:SportsViewModel/>
+    </ContentPage.BindingContext>
+
+    <!--<ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="20, 40, 20, 20" />
+            <On Platform="Android, WinPhone, Windows" Value="20" />
+        </OnPlatform>
+    </ContentPage.Padding>-->
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="SegmentedTabStyle" TargetType="sho:BottomTabItem">
+                <Setter Property="SelectedTabColor" Value="White" />
+                
+                <Setter Property="UnselectedIconColor" Value="{StaticResource Background_Gray}" />
+                <Setter Property="FontFamily" Value="Bebas Neue" />
+                <Setter Property="IconSize" Value="28" />
+                <Setter Property="IsTextVisible" Value="False" />
+                <Setter Property="LabelSize" Value="18" />
+                <Setter Property="UnselectedLabelColor" Value="{StaticResource Background_Gray}" />
+            </Style>
+
+            <DataTemplate x:Key="HorizontalDudeTemplateMatches">
+                 <sho:DraggableViewCell x:Name="DraggableViewCell">
+                    <ContentView
+                        xamEffects:Commands.Tap="{Binding TapCommand}"
+                        xamEffects:Commands.TapParameter="{Binding .}"
+                        xamEffects:TouchEffect.Color="{StaticResource Accent}"
+                        BackgroundColor="{StaticResource Background_Gray}"
+                        IsClippedToBounds="True">
+                        
+                            <views:MatchesGridCell
+                               Margin="0,0,0,0"
+                                Padding="0,0,0,0"
+                                BackgroundColor="{StaticResource Background_Gray}"
+                                CornerRadius="0"
+                                BorderColor="{StaticResource Background_Gray}">
+                                <views:MatchesGridCell.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding Source={x:Reference DraggableViewCell}, Path=IsDragAndDropping}"
+                                        TargetType="views:MatchesGridCell"
+                                        Value="True">
+                                        <Setter Property="BackgroundColor" Value="{StaticResource Background_Gray}" />
+                                    </DataTrigger>
+                                </views:MatchesGridCell.Triggers>
+                            </views:MatchesGridCell>
+                        
+                    </ContentView>
+                </sho:DraggableViewCell>
+            </DataTemplate>
+
+            <DataTemplate x:Key="HorizontalDudeTemplate">
+                <sho:DraggableViewCell x:Name="DraggableViewCell">
+                    <ContentView
+                        xamEffects:Commands.Tap="{Binding TapCommand}"
+                        xamEffects:Commands.TapParameter="{Binding .}"
+                        xamEffects:TouchEffect.Color="{StaticResource Accent}"
+                        BackgroundColor="{StaticResource Background_Gray}"
+                        IsClippedToBounds="True">
+                        
+                            <views:SportsFilter
+                               Margin="0,0,0,0"
+                                Padding="0,0,0,0"
+                                BackgroundColor="{StaticResource Background_Gray}"
+                                CornerRadius="0"
+                                BorderColor="{StaticResource Background_Gray}">
+                                <views:SportsFilter.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding Source={x:Reference DraggableViewCell}, Path=IsDragAndDropping}"
+                                        TargetType="views:SportsFilter"
+                                        Value="True">
+                                        <Setter Property="BackgroundColor" Value="{StaticResource Background_Gray}" />
+                                    </DataTrigger>
+                                </views:SportsFilter.Triggers>
+                            </views:SportsFilter>
+                        
+                    </ContentView>
+                </sho:DraggableViewCell>
+            </DataTemplate>
+
+
+            <DataTemplate x:Key="VerticalDudeTemplate">
+                <sho:DraggableViewCell x:Name="DraggableViewCell">
+                    <ContentView>
+                        <!--<sho:Shadows
+                            x:Name="Shadow"
+                            CornerRadius="10"
+                            Shades="{StaticResource ThinDarkerNeumorphism}">
+                            <views:SillyListCell
+                                Margin="16,13,16,13"
+                                BackgroundColor="{StaticResource DarkerSurface}"
+                                CornerRadius="10">
+                                <views:SillyListCell.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding Source={x:Reference DraggableViewCell}, Path=IsDragAndDropping}"
+                                        TargetType="views:SillyListCell"
+                                        Value="True">
+                                        <Setter Property="BackgroundColor" Value="{StaticResource DarkSurface}" />
+                                    </DataTrigger>
+                                </views:SillyListCell.Triggers>
+                            </views:SillyListCell>
+                        </sho:Shadows>-->
+                    </ContentView>
+                </sho:DraggableViewCell>
+            </DataTemplate>
+
+
+
+        <views:DudeTemplateSelector
+                x:Key="DudeTemplateSelector"
+                GridTemplate="{StaticResource HorizontalDudeTemplateMatches}"
+             HorizontalTemplate="{StaticResource HorizontalDudeTemplate}"
+                VerticalTemplate="{StaticResource VerticalDudeTemplate}" />
+
+              
+
+        </ResourceDictionary>
+
+    </ContentPage.Resources>
+    <ContentPage.Content >
+        <Grid BackgroundColor="{StaticResource Background_Gray}"	>
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".35*" />
+            <RowDefinition Height=".35*" />
+            <RowDefinition Height=".11*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height=".11*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+             <ColumnDefinition Width="*"/>
+             <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+            <ImageButton Source="hamburger_menu.png" BackgroundColor="{StaticResource Background_Gray}" Visual="Material" Margin="0,0,10,0" HorizontalOptions="EndAndExpand" Clicked="ImageButton_Clicked" Grid.Row="0" Grid.Column="2"  WidthRequest="50"/>
+            <ImageButton Source="wordmark.png" Visual="Material" BackgroundColor="{StaticResource Background_Gray}"  Margin="0,0" HorizontalOptions="StartAndExpand" Clicked="home_Clicked" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
+
+
+            <sho:HorizontalListView
+                x:Name="HorizontalListViewSports"
+                CollectionPadding="0,0,0,0"
+                Margin="5,0,5,0"
+                CurrentIndex="{Binding CurrentIndex}"
+                EnableDragAndDrop="False"
+                
+                
+                ItemTemplate="{StaticResource DudeTemplateSelector}"
+                ItemsSource="{Binding AllSports}"
+                ListLayout="Linear"
+                TapCommand="{Binding TapCommand}"
+                
+                ScrollBeganCommand="{Binding OnScrollBeginCommand}"
+                ScrollEndedCommand="{Binding OnScrollEndCommand}"
+                SnapStyle="Center"
+               
+                ColumnCount="5"
+                Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"/>
+
+       
+            <StackLayout Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,0" Padding="0" Orientation="Horizontal">
+
+                <Forms9Patch:Label Text="WHAT'S" HorizontalOptions="End" TextColor="Black"  FontFamily="Bebas Neue" FontSize="25" Margin="0,0,0,0" Padding="0"/>
+                <Forms9Patch:Label Text="HOT"  HorizontalOptions="Start" TextColor="#DFAD41" FontFamily="Bebas Neue" FontSize="25" Margin="0" Padding="0"/> 
+           
+            </StackLayout>
+
+           
+         
+
+            <sho:HorizontalListView
+                x:Name="HorizontalListViewHot"
+                CollectionPadding="5"
+                Margin="5"
+                CurrentIndex="{Binding CurrentIndex}"
+                EnableDragAndDrop="False"
+                ItemHeight="200"
+                ItemWidth="175"
+                ItemTemplate="{StaticResource DudeTemplateSelector}"
+                ItemsSource="{Binding HotMatches}"
+                ListLayout="Grid"
+                TapCommand="{Binding TapCommand}"
+                SnapStyle="Center"
+                ColumnCount="2"
+                Grid.Row="3"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"/>
+
+
+           
+               <StackLayout Orientation="Horizontal" Padding="0" Margin="0" Grid.Row="4" Grid.ColumnSpan="2">
+                   <Forms9Patch:Label Text="TODAY'S" TextColor="Black"  HorizontalOptions="End" FontFamily="Bebas Neue" FontSize="25" Margin="0,0,0,0" Padding="0"/>
+                    <Forms9Patch:Label Text="BETS"  TextColor="#DFAD41" HorizontalOptions="Start" FontFamily="Bebas Neue" FontSize="25" Margin="0,0,0,0" Padding="0"/> 
+                </StackLayout>
+                
+
+            <sho:HorizontalListView
+                x:Name="HorizontalListView"
+                CollectionPadding="5"
+                Margin="5"
+                CurrentIndex="{Binding CurrentIndex}"
+                EnableDragAndDrop="False"
+                ItemHeight="200"
+                ItemWidth="175"
+                ItemTemplate="{StaticResource DudeTemplateSelector}"
+                ItemsSource="{Binding AllMatches}"
+                ListLayout="Grid"
+                TapCommand="{Binding TapCommand}"
+                SnapStyle="Center"
+                ColumnCount="2"
+                Grid.Row="5"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"/>
+            
+            <!-- ListLayoutChanging="ListLayoutChanging"
+            InfiniteListLoader="{Binding SillyPeoplePaginator}"
+            ItemHeight="260"
+                ItemWidth="260"-->
+
+
+    </Grid>
+    </ContentPage.Content>
+</ContentPage>

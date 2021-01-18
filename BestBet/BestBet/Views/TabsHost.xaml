@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="BestBet.Views.TabsHost"
+    xmlns:viewmodel="clr-namespace:BestBet.ViewModels"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:sho="http://sharpnado.com"
+    xmlns:views="clr-namespace:BestBet.Views"
+    xmlns:views1="clr-namespace:BestBet.Views.TabLayouts"
+    ios:Page.UseSafeArea="true"
+    Visual="Material"
+    Title="Best Bet"
+    BackgroundColor="{StaticResource Background_Gray}"
+    NavigationPage.HasNavigationBar="False" >
+
+    <ContentPage.Resources>
+    <ResourceDictionary>
+
+            <Style x:Key="SegmentedTabStyle" TargetType="sho:BottomTabItem">
+                <Setter Property="SelectedTabColor" Value="White" />
+                <Setter Property="UnselectedIconColor" Value="{StaticResource Background_Gray}" />
+                <Setter Property="FontFamily" Value="Bebas Neue" />
+                <Setter Property="IconSize" Value="28" />
+                <Setter Property="IsTextVisible" Value="True" />
+                <Setter Property="LabelSize" Value="18" />
+                <Setter Property="UnselectedLabelColor" Value="{StaticResource Background_Gray}" />
+            </Style>
+         </ResourceDictionary>
+     </ContentPage.Resources>
+
+    <ContentPage.Content>
+         
+      <StackLayout>
+
+       
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+         <sho:ViewSwitcher x:Name="Switcher"
+                       Grid.Row="0"
+                       Animate="False"
+                       SelectedIndex="{Binding SelectedViewModelIndex, Mode=TwoWay}">
+                <sho:LazyView x:TypeArguments="views:TabbedMainPage" BindingContext="{Binding SportsViewModel}" />
+                <sho:LazyView x:TypeArguments="views1:LiveTab" BindingContext="{Binding SportsViewModel}" />
+                <sho:LazyView x:TypeArguments="views:WatchListTab" BindingContext="{Binding SportsViewModel}" />
+            </sho:ViewSwitcher>
+
+            <sho:TabHostView
+                        x:Name="TabHost"
+                        WidthRequest="300"
+                        HeightRequest="50"
+                        Margin="0,50,0,10"
+                        HorizontalOptions="Center"
+                        VerticalOptions="EndAndExpand"
+                        BackgroundColor="{StaticResource Primary}"
+                        CornerRadius="15"
+                        IsSegmented="True"
+                        Grid.Row="0"
+                        SelectedIndex="{Binding Source={x:Reference Switcher}, Mode=TwoWay}"
+                        SegmentedHasSeparator="True"
+                        Shades="{StaticResource DarkNeumorphism}"
+                        TabType="Fixed">
+                        <sho:TabHostView.Tabs>
+                            <sho:BottomTabItem Style="{StaticResource SegmentedTabStyle}" LabelSize="16" Label="Hot" />
+                            <sho:BottomTabItem Style="{StaticResource SegmentedTabStyle}" LabelSize="16" Label="Live"/>
+                            <sho:TabButton ButtonBackgroundColor="{StaticResource Accent}"
+                            ButtonCircleSize="60"
+                            ButtonPadding="15"
+                            IconImageSource="bottommenu_main_chip.png"
+                            Scale="1.3"
+                            TranslationY="-10" />
+                            <sho:BottomTabItem Style="{StaticResource SegmentedTabStyle}" LabelSize="16" Label="Watchlist"/>
+                            <sho:BottomTabItem Style="{StaticResource SegmentedTabStyle}" LabelSize="16" Label="Settings"/>
+                        </sho:TabHostView.Tabs>
+                    </sho:TabHostView>
+            </Grid>
+            </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

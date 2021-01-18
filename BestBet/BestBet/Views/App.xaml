@@ -10,19 +10,19 @@
     <Color x:Key="Accent">#000000</Color>
     
 
-    <!--<Color x:Key="DarkSurface">#383838</Color> change this
+    <Color x:Key="DarkSurface">#383838</Color>
 
-    <Color x:Key="DarkerSurface">#323232</Color>  change this
+    <Color x:Key="DarkerSurface">#323232</Color>  
 
     <Color x:Key="LightSurface">#FAF8F9</Color>
     <Color x:Key="AcrylicSurface">#E4E4E4</Color>
-    <Color x:Key="NeumorphismSurface">#F0F0F3</Color>-->
+    <Color x:Key="NeumorphismSurface">#F0F0F3</Color>
     <Color x:Key="Background_Gray">#EFEFEF</Color>
 
-    <!--<Color x:Key="DarkOverlay">#80000000</Color>-->
+    <Color x:Key="DarkOverlay">#80000000</Color>
 
 
-    <!--<sho:SingleShade
+    <sho:SingleShade
         x:Key="DarkBottomShadow"
         BlurRadius="6"
         Opacity="1"
@@ -36,7 +36,7 @@
             BlurRadius="6"
             Opacity="1"
             Offset="-8,-8"
-            Color="#404040" />
+            Color="{StaticResource Background_Gray}" />
         <sho:Shade
             BlurRadius="6"
             Opacity="1"
@@ -102,7 +102,7 @@
             Opacity="0.5"
             Offset="20,20"
             Color="#404040" />
-    </sho:ImmutableShades>-->
+    </sho:ImmutableShades>
         
     </Application.Resources>
 </Application>

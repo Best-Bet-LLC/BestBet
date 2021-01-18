@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:loader="clr-namespace:Sharpnado.Presentation.Forms.CustomViews;assembly=Sharpnado.TaskLoaderView" x:Class="BestBet.Views.TabLayouts.LiveTab">
+    <ContentPage.Content>
+        <loader:TaskLoaderView >
+            <!--Style="{StaticResource SillyTaskLoader}" TaskLoaderNotifier="{Binding SillyDudeLoaderNotifier}"-->
+        <Label Text="Live Tab"/>
+            </loader:TaskLoaderView>
+    </ContentPage.Content>
+</ContentPage>

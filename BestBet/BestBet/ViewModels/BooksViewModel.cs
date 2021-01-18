@@ -4,6 +4,14 @@ using System.ComponentModel;
 
 namespace BestBet.ViewModels
 {
+    public enum ListMode
+    {
+        Hot = 0,
+        Live = 1,
+        Watchlist = 2,
+        Settings = 3
+    }
+
     public class BooksViewModel : INotifyPropertyChanged
     {
         public BooksViewModel()

@@ -23,9 +23,10 @@ namespace BestBet.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            Sharpnado.HorizontalListView.iOS.SharpnadoInitializer.Initialize();
+            
 
             global::Xamarin.Forms.Forms.Init();
+            Sharpnado.Tabs.iOS.Preserver.Preserve();
             Sharpnado.HorizontalListView.iOS.SharpnadoInitializer.Initialize();
             Forms9Patch.iOS.Settings.Initialize(this);
             LoadApplication(new App());

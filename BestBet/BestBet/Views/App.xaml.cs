@@ -47,6 +47,10 @@ namespace BestBet
         {
             InitializeComponent();
             Sharpnado.HorizontalListView.Initializer.Initialize(true, false);
+            Sharpnado.Tabs.Initializer.Initialize(loggerEnable: false, debugLogEnable: false);
+            Sharpnado.Shades.Initializer.Initialize(loggerEnable: false);
+            Sharpnado.TaskLoaderView.Initializer.Initialize(loggerEnable: false);
+            
             //FlowListView.Init();
             DependencyService.Register<OddsAPIInterface, OddsAPI>();
             MainPage = new NavigationPage(new SplashScreen());

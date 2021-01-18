@@ -204,5 +204,6 @@
     <BundleResource Include="Resources\basketball_euroleague.png" />
     <BundleResource Include="Resources\splashlogo.png" />
     <BundleResource Include="Resources\logo.png" />
+    <BundleResource Include="Resources\bottommenu_main_chip.png" />
   </ItemGroup>
 </Project>
