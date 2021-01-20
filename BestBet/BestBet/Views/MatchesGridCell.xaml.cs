@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using BestBet.Models;
 using Xamarin.Forms;
 
 namespace BestBet.Views
@@ -11,5 +11,11 @@ namespace BestBet.Views
         {
             InitializeComponent();
         }
+
+       // void MatchTapped(System.Object sender, System.EventArgs e)
+       // {
+       //     Match match = (Match)sender;
+            
+       //}
     }
 }

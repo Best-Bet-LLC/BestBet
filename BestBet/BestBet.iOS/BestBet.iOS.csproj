@@ -205,5 +205,10 @@
     <BundleResource Include="Resources\splashlogo.png" />
     <BundleResource Include="Resources\logo.png" />
     <BundleResource Include="Resources\bottommenu_main_chip.png" />
+    <BundleResource Include="Resources\bottommenu_settings_icon.png" />
+    <BundleResource Include="Resources\bottommenu_profile_icon.png" />
+    <BundleResource Include="Resources\bottommenu_watchlist_icon.png" />
+    <BundleResource Include="Resources\bottommenu_live_icon.png" />
+    <BundleResource Include="Resources\bottommenu_background.jpg" />
   </ItemGroup>
 </Project>

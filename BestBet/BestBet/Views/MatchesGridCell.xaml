@@ -42,7 +42,11 @@
                                                     <Forms9Patch:Label Text="{Binding matchTime}" IsVisible="{Binding isNotLive}" Margin="0,0,-20,0" FontFamily="Bebas Neue" FontSize="20" TextColor="{Binding IsLive}" Rotation="-90" Grid.Row="0" Grid.Column="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="End" VerticalTextAlignment="Center" MaxLines="1"/>
                                                     <Image Source="barcode.jpg" Margin="0,-20,5,0" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
                                                     <Image Source="{Binding sport_key}" Grid.Row="3" Grid.Column="1" VerticalOptions="Start" HorizontalOptions="CenterAndExpand" />
-                                    
+                                                    <!--<Grid.GestureRecognizers>
+                                                        <TapGestureRecognizer
+                                                                Tapped="MatchTapped"
+                                                                NumberOfTapsRequired="1" />
+                                                           </Grid.GestureRecognizers>-->
 
                                                     </Grid>
                                                 </Forms9Patch:Frame.Content>

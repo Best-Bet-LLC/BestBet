@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using Xamarin.Forms;
 
-namespace BestBet.Views
+namespace BestBet.Views.TabLayouts
 {
-    public partial class TabsHost : ContentPage
+    public partial class WatchListTabView : ContentView
     {
-        public TabsHost()
+        public WatchListTabView()
         {
             InitializeComponent();
         }

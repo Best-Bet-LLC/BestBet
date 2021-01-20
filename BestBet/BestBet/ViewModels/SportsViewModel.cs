@@ -8,6 +8,7 @@ using BestBet.Services;
 using BestBet.Models;
 using System.Windows.Input;
 using System.Threading.Tasks;
+using BestBet.Views;
 
 namespace BestBet.ViewModels
 {
@@ -16,6 +17,7 @@ namespace BestBet.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
 
         OddsAPIInterface _rest = DependencyService.Get<OddsAPIInterface>();
+        
 
         private bool _isRefreshing = false;
         public bool IsRefreshing
@@ -110,9 +112,18 @@ namespace BestBet.ViewModels
 
         public SportsViewModel()
         {
-            getSports();
-            //Task.Run(async () => await
-            getUpcomingMatches();
+            //var t = Task.Run(() =>
+            //{
+            //    // Do some work on a background thread, allowing the UI to remain responsive
+            //    Xamarin.Forms.Device.BeginInvokeOnMainThread(async () => {
+            //        _ = await getSports();
+
+            //        _ = await getUpcomingMatches();
+            //    });
+            //});
+            InitCommands();
+            getSports().Wait();
+            _ = getUpcomingMatches();
         }
 
         public SportsViewModel(bool refreshUpcomingMatches)
@@ -124,7 +135,7 @@ namespace BestBet.ViewModels
         {
             try
             {
-                //Console.WriteLine("about to invoke");
+                Console.WriteLine("about to invoke");
                 var result = await _rest.getSports();
                 ObservableCollection<Sport> temp_result = new ObservableCollection<Sport>();
                 foreach (Sport sport in result)
@@ -218,9 +229,16 @@ namespace BestBet.ViewModels
         {
             try
             {
+                allMatches = new List<Match>();
+                hotMatches = new List<Match>();
+                //hotMatches.Add(new Match());
+                //allMatches.Add(new Match());
                 Console.WriteLine("about to invoke upcoming matches");
                 var result = await _rest.getUpcomingMatches(App.sport, App.region);
-
+                hotMatches.Add(result[0]);
+                allMatches.Add(result[0]);
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("AllMatches"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("HotMatches"));
                 List<Match> tempMatches = new List<Match>();
                 foreach (var match in result)
                 {
@@ -240,7 +258,7 @@ namespace BestBet.ViewModels
                     match.sites.RemoveAll(site => !(bookNames.Contains(site.site_nice)));
 
                 }
-                //Console.WriteLine($"{tempMatches.Count}");
+                Console.WriteLine($"{tempMatches.Count}");
                 List<Match> temp_result = new List<Match>();
                 var counter = 0;
                 foreach (var match in tempMatches)
@@ -318,5 +336,20 @@ namespace BestBet.ViewModels
                 return false;
             }
         }
+
+        public ICommand TapCommand { get; private set; }
+
+        private void InitCommands()
+        {
+            TapCommand = new Command<Match>(
+                (match) => {
+                    Console.WriteLine($"Match Tapped {match.awayTeam} @ {match.home_team} tapped!");
+                    MatchesPage matchesPage = new MatchesPage(match);
+                    Application.Current.MainPage.Navigation.PushAsync(matchesPage);
+                    });
+
+            
+        }
+
     }
 }

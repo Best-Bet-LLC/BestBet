@@ -24,15 +24,7 @@
             <ImageButton Source="filter.png" Visual="Material" Margin="10,10" HorizontalOptions="EndAndExpand" Clicked="Button_Clicked" Grid.Row="0" Grid.Column="1"/>
            
         
-        <ListView ItemsSource="{Binding AllMatches}" Grid.Row="1" Grid.ColumnSpan="2" RowHeight="250"
-                  IsPullToRefreshEnabled="True"
-                  RefreshCommand="{Binding RefreshCommand}"
-                  IsRefreshing="{Binding IsRefreshing}"
-                  SeparatorVisibility="None"
-                  BackgroundColor="Transparent">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
+       
                         <StackLayout Spacing="-6">
                          <Frame Padding="10, 10, 10, 10" BackgroundColor="Transparent" BorderColor="Transparent" HasShadow="True">
                         <Frame.Content>
@@ -264,10 +256,7 @@
                             </Frame.Content>
                             </Frame>
                             </StackLayout>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                    
     </Grid>
     </ContentPage.Content>
 </ContentPage>

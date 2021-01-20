@@ -15,7 +15,6 @@
 ios:Page.UseSafeArea="true"
              x:Class="BestBet.Views.TabbedMainPage"
              Visual="Material"
-             Title="Best Bet"
              BackgroundColor="{StaticResource Background_Gray}"
              NavigationPage.HasNavigationBar="False"  >
     <ContentPage.BindingContext>
@@ -105,11 +104,11 @@ ios:Page.UseSafeArea="true"
             <DataTemplate x:Key="VerticalDudeTemplate">
                 <sho:DraggableViewCell x:Name="DraggableViewCell">
                     <ContentView>
-                        <!--<sho:Shadows
+                        <sho:Shadows
                             x:Name="Shadow"
                             CornerRadius="10"
                             Shades="{StaticResource ThinDarkerNeumorphism}">
-                            <views:SillyListCell
+                            <!--<views:SillyListCell
                                 Margin="16,13,16,13"
                                 BackgroundColor="{StaticResource DarkerSurface}"
                                 CornerRadius="10">
@@ -121,8 +120,8 @@ ios:Page.UseSafeArea="true"
                                         <Setter Property="BackgroundColor" Value="{StaticResource DarkSurface}" />
                                     </DataTrigger>
                                 </views:SillyListCell.Triggers>
-                            </views:SillyListCell>
-                        </sho:Shadows>-->
+                            </views:SillyListCell>-->
+                        </sho:Shadows>
                     </ContentView>
                 </sho:DraggableViewCell>
             </DataTemplate>
@@ -165,21 +164,46 @@ ios:Page.UseSafeArea="true"
                 Margin="5,0,5,0"
                 CurrentIndex="{Binding CurrentIndex}"
                 EnableDragAndDrop="False"
-                
-                
-                ItemTemplate="{StaticResource DudeTemplateSelector}"
                 ItemsSource="{Binding AllSports}"
+                ItemTemplate="{StaticResource DudeTemplateSelector}"
                 ListLayout="Linear"
                 TapCommand="{Binding TapCommand}"
-                
                 ScrollBeganCommand="{Binding OnScrollBeginCommand}"
                 ScrollEndedCommand="{Binding OnScrollEndCommand}"
                 SnapStyle="Center"
-               
                 ColumnCount="5"
                 Grid.Row="1"
                 Grid.Column="0"
-                Grid.ColumnSpan="3"/>
+                Grid.ColumnSpan="3">
+
+            <!--<sho:HorizontalListView.ItemTemplate>
+                <DataTemplate>
+                <sho:DraggableViewCell x:Name="DraggableViewCell">
+                    <ContentView >
+                        
+                            <views:SportsFilter
+                               Margin="0,0,0,0"
+                                Padding="0,0,0,0"
+                                BackgroundColor="{StaticResource Background_Gray}"
+                                CornerRadius="0"
+                                BorderColor="{StaticResource Background_Gray}">
+                                <views:SportsFilter.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding Source={x:Reference DraggableViewCell}, Path=IsDragAndDropping}"
+                                        TargetType="views:SportsFilter"
+                                        Value="True">
+                                        <Setter Property="BackgroundColor" Value="{StaticResource Background_Gray}" />
+                                    </DataTrigger>
+                                </views:SportsFilter.Triggers>
+                            </views:SportsFilter>
+                        
+                    </ContentView>
+                </sho:DraggableViewCell>
+            </DataTemplate>
+
+                
+            </sho:HorizontalListView.ItemTemplate>-->
+                </sho:HorizontalListView>
 
        
             <StackLayout Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,0" Padding="0" Orientation="Horizontal">
@@ -200,15 +224,46 @@ ios:Page.UseSafeArea="true"
                 EnableDragAndDrop="False"
                 ItemHeight="200"
                 ItemWidth="175"
-                ItemTemplate="{StaticResource DudeTemplateSelector}"
                 ItemsSource="{Binding HotMatches}"
+                ItemTemplate="{StaticResource DudeTemplateSelector}"
                 ListLayout="Grid"
                 TapCommand="{Binding TapCommand}"
                 SnapStyle="Center"
                 ColumnCount="2"
                 Grid.Row="3"
                 Grid.Column="0"
-                Grid.ColumnSpan="3"/>
+                Grid.ColumnSpan="3">
+                <!--<sho:HorizontalListView.ItemTemplate>
+                <DataTemplate>
+                    <sho:DraggableViewCell x:Name="DraggableViewCell">
+                    <ContentView
+                        xamEffects:Commands.Tap="{Binding TapCommand}"
+                        xamEffects:Commands.TapParameter="{Binding .}"
+                        xamEffects:TouchEffect.Color="{StaticResource Accent}"
+                        BackgroundColor="{StaticResource Background_Gray}"
+                        IsClippedToBounds="True">
+                        
+                            <views:MatchesGridCell
+                               Margin="0,0,0,0"
+                                Padding="0,0,0,0"
+                                BackgroundColor="{StaticResource Background_Gray}"
+                                CornerRadius="0"
+                                BorderColor="{StaticResource Background_Gray}">
+                                <views:MatchesGridCell.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding Source={x:Reference DraggableViewCell}, Path=IsDragAndDropping}"
+                                        TargetType="views:MatchesGridCell"
+                                        Value="True">
+                                        <Setter Property="BackgroundColor" Value="{StaticResource Background_Gray}" />
+                                    </DataTrigger>
+                                </views:MatchesGridCell.Triggers>
+                            </views:MatchesGridCell>
+                        
+                    </ContentView>
+                   </sho:DraggableViewCell>
+                </DataTemplate>
+                    </sho:HorizontalListView.ItemTemplate>-->
+                </sho:HorizontalListView>
 
 
            
@@ -226,7 +281,6 @@ ios:Page.UseSafeArea="true"
                 EnableDragAndDrop="False"
                 ItemHeight="200"
                 ItemWidth="175"
-                ItemTemplate="{StaticResource DudeTemplateSelector}"
                 ItemsSource="{Binding AllMatches}"
                 ListLayout="Grid"
                 TapCommand="{Binding TapCommand}"
@@ -234,7 +288,34 @@ ios:Page.UseSafeArea="true"
                 ColumnCount="2"
                 Grid.Row="5"
                 Grid.Column="0"
-                Grid.ColumnSpan="3"/>
+                Grid.ColumnSpan="3"
+                ItemTemplate="{StaticResource DudeTemplateSelector}">
+
+                <!--<sho:HorizontalListView.ItemTemplate>
+                <DataTemplate>
+                    <sho:DraggableViewCell x:Name="DraggableViewCell">
+                    <ContentView >
+                            <views:MatchesGridCell
+                               Margin="0,0,0,0"
+                                Padding="0,0,0,0"
+                                BackgroundColor="{StaticResource Background_Gray}"
+                                CornerRadius="0"
+                                BorderColor="{StaticResource Background_Gray}">
+                                <Frame.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding Source={x:Reference DraggableViewCell}, Path=IsDragAndDropping}"
+                                        TargetType="views:MatchesGridCell"
+                                        Value="True">
+                                        <Setter Property="BackgroundColor" Value="{StaticResource Background_Gray}" />
+                                    </DataTrigger>
+                                </Frame.Triggers>
+                            </views:MatchesGridCell>
+                        
+                    </ContentView>
+                   </sho:DraggableViewCell>
+                </DataTemplate>
+                    </sho:HorizontalListView.ItemTemplate>-->
+                </sho:HorizontalListView>
             
             <!-- ListLayoutChanging="ListLayoutChanging"
             InfiniteListLoader="{Binding SillyPeoplePaginator}"

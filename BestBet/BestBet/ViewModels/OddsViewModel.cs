@@ -43,6 +43,32 @@ namespace BestBet.ViewModels
             }
         }
 
+        private bool _isRefreshing_Single = false;
+        public bool IsRefreshing_Single
+        {
+            get { return _isRefreshing_Single; }
+            set
+            {
+                _isRefreshing_Single = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IsRefreshing_Single"));
+            }
+        }
+
+        public ICommand RefreshCommand_Single
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+                    IsRefreshing_Single = true;
+
+                    await getOdds(selectedMatch);
+
+                    IsRefreshing_Single = false;
+                });
+            }
+        }
+
         private List<Match> allMatches;
 
         public List<Match> AllMatches
@@ -93,13 +119,44 @@ namespace BestBet.ViewModels
             }
         }
 
+        private Match selectedMatch;
+
+        public Match SelectedMatch
+        {
+            get
+            {
+                return selectedMatch;
+            }
+            set
+            {
+                try
+                {
+                    if (value != null)
+                    {
+                        selectedMatch = value;
+                        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SelectedMatch"));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"crash: {ex.Message}");
+                }
+            }
+        }
+
+
 
         public OddsViewModel()
         {
             getOdds();
         }
 
-        
+        public OddsViewModel(Match matchIn)
+        {
+            selectedMatch = matchIn;
+        }
+
+
 
         public async Task<bool> getOdds()
         {
@@ -146,7 +203,50 @@ namespace BestBet.ViewModels
             return true;
         }
 
-        
+        public async Task<bool> getOdds(Match matchIn)
+        {
+            try
+            {
+                Console.WriteLine("about to invoke");
+                ObservableCollection<Match> result = await _rest.getOdds(App.sport, App.region);
+                List<Match> tempMatches = new List<Match>();
+                foreach (var match in result)
+                {
+                    tempMatches.Add(match);
+                }
+
+                foreach (var match in tempMatches)
+                {
+                    List<Book> currentBooks = await App.Database.GetSelectedBooksAsync();
+                    List<string> bookNames = new List<string>();
+
+                    foreach (var book in currentBooks)
+                    {
+                        bookNames.Add(book.name);
+                    }
+
+                    match.sites.RemoveAll(site => !(bookNames.Contains(site.site_nice)));
+
+                }
+                Console.WriteLine($"{tempMatches.Count}");
+                foreach(var match in tempMatches)
+                {
+                    if(match == matchIn)
+                    {
+                        selectedMatch = match;
+                    }
+                }
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SelectedMatch"));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"crash: {ex.Message}");
+            }
+
+            return true;
+        }
+
+
 
     }
 }

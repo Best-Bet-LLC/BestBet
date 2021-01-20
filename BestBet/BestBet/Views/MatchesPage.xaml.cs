@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using BestBet.Models;
 using BestBet.ViewModels;
 using Xamarin.Forms;
 
@@ -9,6 +10,12 @@ namespace BestBet.Views
     {
         public MatchesPage()
         {
+            InitializeComponent();
+        }
+
+        public MatchesPage(Match matchIn)
+        {
+            OddsViewModel oddsViewModel = new OddsViewModel(matchIn);
             InitializeComponent();
         }
 

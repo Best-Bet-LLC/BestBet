@@ -14,6 +14,8 @@ using Sharpnado.Presentation.Forms.CustomViews;
 using Sharpnado.Tabs;
 using Sharpnado.HorizontalListView.RenderedViews;
 using Xamarin.Forms;
+using System.Windows.Input;
+using BestBet.Models;
 
 namespace BestBet.Views
 {
@@ -35,9 +37,7 @@ namespace BestBet.Views
             InitializeComponent();
 
             updateDB();
-            Sharpnado.HorizontalListView.Initializer.Initialize(true, true);
-            Sharpnado.Tabs.Initializer.Initialize(true, true);
-            Sharpnado.Shades.Initializer.Initialize(loggerEnable: true, true);
+
             HorizontalListView.PreRevealAnimationAsync = async (viewCell) =>
             {
                 viewCell.View.Opacity = 0;
@@ -142,11 +142,6 @@ namespace BestBet.Views
             //BindingContext = this;
         }
 
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-        }
-
         private async void updateDB()
         {
             //App.Database.DropTable();
@@ -231,11 +226,10 @@ namespace BestBet.Views
             //sportsViewModel.getUpcomingMatches();
         }
 
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        public void launchMatchPage(Match matchIn)
         {
-            //((CollectionView)sender).SelectedItem = null;
+            Navigation.PushModalAsync(new MatchesPage(matchIn));
         }
-
     }
 }
 

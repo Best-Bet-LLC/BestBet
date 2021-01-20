@@ -45,24 +45,25 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="Views\TabLayouts\WatchListTab.xaml" />
+    <EmbeddedResource Remove="Views\WatchListTab.xaml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\splashscreen.json" />
     <EmbeddedResource Include="Resources\splashscreen_gold.json" />
-    <EmbeddedResource Include="Views\WatchListTab.xaml.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' ">
-      <DependentUpon>WatchListTab.xaml</DependentUpon>
-      <SubType>Code</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Views\LiveTab.xaml.cs" />
     <Compile Remove="Views\TabLayouts\WatchListTab.xaml.cs" />
-    <Compile Remove="Views\WatchListTab.xaml.cs" />
     <Compile Remove="Views\MainPage.xaml.cs" />
+    <Compile Remove="Views\WatchListTab.xaml.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\MainPage.xaml.cs">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\WatchListTab.xaml.cs">
+      <DependentUpon>WatchListTab.xaml</DependentUpon>
+      <SubType>Code</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </Compile>
   </ItemGroup>

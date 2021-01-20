@@ -88,12 +88,12 @@
             BlurRadius="3"
             Opacity="1"
             Offset="5,5"
-            Color="#FA0061" />
+            Color="{StaticResource Primary}" />
         <sho:Shade
             BlurRadius="3"
             Opacity="1"
             Offset="-5,-5"
-            Color="#FF0266" />
+            Color="{StaticResource Primary}" />
     </sho:ImmutableShades>
 
     <sho:ImmutableShades x:Key="DraggingShadows">
