@@ -144,16 +144,49 @@ namespace BestBet.ViewModels
             }
         }
 
+        private bool singleMatchView;
+
+        public bool SingleMatchView
+        {
+            get
+            {
+                return singleMatchView;
+            }
+            set
+            {
+                try
+                {
+                    if (value != null)
+                    {
+                        singleMatchView = value;
+                        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SingleMatchView"));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"crash: {ex.Message}");
+                }
+            }
+        }
+
 
 
         public OddsViewModel()
         {
-            getOdds();
+            if(singleMatchView == true)
+            {
+
+            } else
+            {
+                getOdds();
+            }
+            
         }
 
         public OddsViewModel(Match matchIn)
         {
             selectedMatch = matchIn;
+            singleMatchView = true;
         }
 
 
@@ -197,7 +230,7 @@ namespace BestBet.ViewModels
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"crash: {ex.Message}");
+                Console.WriteLine($"crash in get odds: {ex.Message}");
             }
 
             return true;
@@ -240,7 +273,7 @@ namespace BestBet.ViewModels
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"crash: {ex.Message}");
+                Console.WriteLine($"crash in get odds with match: {ex.Message}");
             }
 
             return true;
