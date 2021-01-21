@@ -27,7 +27,10 @@ namespace BestBet.Views
                     case HorizontalListViewLayout.Linear:
                         return HorizontalTemplate;
 
-                    default:
+                case HorizontalListViewLayout.Vertical:
+                    return VerticalTemplate;
+
+                default:
                         return VerticalTemplate;
             }
             }

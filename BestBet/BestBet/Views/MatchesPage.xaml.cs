@@ -10,13 +10,15 @@ namespace BestBet.Views
     {
         public MatchesPage()
         {
-            InitializeComponent();
+            //InitializeComponent();
         }
 
         public MatchesPage(Match matchIn)
         {
-            OddsViewModel oddsViewModel = new OddsViewModel(matchIn);
             InitializeComponent();
+            bool singleMatchViewIn = true;
+            BindingContext = new OddsViewModel(matchIn, singleMatchViewIn);
+           
         }
 
         public MatchesPage(string sport, string region)
@@ -27,7 +29,12 @@ namespace BestBet.Views
             //OddsViewModel oddsViewModel = new OddsViewModel(sport, region);
         }
 
-        void Button_Clicked(System.Object sender, System.EventArgs e)
+        void ImageButton_Clicked(System.Object sender, System.EventArgs e)
+        {
+            App.Current.MainPage.Navigation.PushModalAsync(new FilterBooksModal());
+        }
+
+        void home_clicked(System.Object sender, System.EventArgs e)
         {
             App.Current.MainPage.Navigation.PushModalAsync(new FilterBooksModal());
         }

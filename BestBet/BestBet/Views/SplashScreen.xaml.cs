@@ -21,7 +21,7 @@ namespace BestBet.Views
                 // Do some work on a background thread, allowing the UI to remain responsive
                 Xamarin.Forms.Device.BeginInvokeOnMainThread(async () => {
                     TabbedMainPage main = new TabbedMainPage();
-                    await Task.Delay(3000);
+                    await Task.Delay(300);
                     _ = Navigation.PushAsync(main);
                 });
             });

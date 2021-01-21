@@ -36,36 +36,41 @@ namespace BestBet.ViewModels
                 {
                     IsRefreshing = true;
 
-                    await getOdds();
+                    if (singleMatchView)
+                    {
+                        await getOdds(selectedMatch);
+                    }
+                    else await getOdds();
+                    
 
                     IsRefreshing = false;
                 });
             }
         }
 
-        private bool _isRefreshing_Single = false;
-        public bool IsRefreshing_Single
-        {
-            get { return _isRefreshing_Single; }
-            set
-            {
-                _isRefreshing_Single = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IsRefreshing_Single"));
-            }
-        }
 
-        public ICommand RefreshCommand_Single
+        private List<Site> sites;
+
+        private List<Site> Sites
         {
             get
             {
-                return new Command(async () =>
+                return sites;
+            }
+            set
+            {
+                try
                 {
-                    IsRefreshing_Single = true;
-
-                    await getOdds(selectedMatch);
-
-                    IsRefreshing_Single = false;
-                });
+                    if (value != null)
+                    {
+                        sites = value;
+                        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Sites"));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"crash: {ex.Message}");
+                }
             }
         }
 
@@ -119,6 +124,8 @@ namespace BestBet.ViewModels
             }
         }
 
+       
+
         private Match selectedMatch;
 
         public Match SelectedMatch
@@ -134,7 +141,7 @@ namespace BestBet.ViewModels
                     if (value != null)
                     {
                         selectedMatch = value;
-                        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SelectedMatch"));
+                       // PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SelectedMatch"));
                     }
                 }
                 catch (Exception ex)
@@ -173,20 +180,25 @@ namespace BestBet.ViewModels
 
         public OddsViewModel()
         {
-            if(singleMatchView == true)
-            {
+            
+            
+        }
 
+        public OddsViewModel(Match matchIn, bool singleMatchViewIn)
+        {
+            
+            singleMatchView = singleMatchViewIn;
+            if (singleMatchView)
+            {
+                selectedMatch = matchIn;
+                sites = selectedMatch.sites;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SelectedMatch"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Sites"));
+                getOdds(); //for testing purposes, remove for go live
             } else
             {
                 getOdds();
             }
-            
-        }
-
-        public OddsViewModel(Match matchIn)
-        {
-            selectedMatch = matchIn;
-            singleMatchView = true;
         }
 
 
@@ -198,6 +210,10 @@ namespace BestBet.ViewModels
                 Console.WriteLine("about to invoke");
                 ObservableCollection<Match> result = await _rest.getOdds(App.sport, App.region);
                 List<Match> tempMatches = new List<Match>();
+                allMatches = new List<Match>();
+                allMatches.Add(result[0]);
+                hotMatches = new List<Match>();
+                hotMatches.Add(result[0]);
                 foreach (var match in result)
                 {
                     tempMatches.Add(match);
@@ -217,16 +233,21 @@ namespace BestBet.ViewModels
 
                 }
                 Console.WriteLine($"{tempMatches.Count}");
-                allMatches = tempMatches;
-                tempMatches.Clear();
+                allMatches.Clear();
+                foreach (var match in tempMatches)
+                {
+                    allMatches.Add(match);
+                    //tempMatches.Remove
+                }
+                hotMatches.Clear();
                 for(int i=0; i<3; i++)
                 {
                     allMatches[i].isHot = true;
-                    tempMatches.Add(allMatches[i]);
+                    hotMatches.Add(allMatches[i]);
                 }
-                HotMatches = tempMatches;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("AllMatches"));
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("HotMatches"));
+                //hotMatches = tempMatches;
+               // PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("AllMatches"));
+              //  PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("HotMatches"));
             }
             catch (Exception ex)
             {
@@ -264,7 +285,7 @@ namespace BestBet.ViewModels
                 Console.WriteLine($"{tempMatches.Count}");
                 foreach(var match in tempMatches)
                 {
-                    if(match == matchIn)
+                    if ((match.awayTeam == matchIn.awayTeam) && (match.home_team == matchIn.home_team) && (matchIn.commence_time == match.commence_time))
                     {
                         selectedMatch = match;
                     }

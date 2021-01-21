@@ -88,6 +88,28 @@ namespace BestBet.ViewModels
             }
         }
 
+        private List<Match> filteredMatches;
+
+        public List<Match> FilteredMatches
+        {
+            get
+            {
+                return filteredMatches;
+            }
+            set
+            {
+                try
+                {
+                    filteredMatches = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("FilteredMatches"));
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"crash: {ex.Message}");
+                }
+            }
+        }
+
         private List<Match> hotMatches;
 
         public List<Match> HotMatches
@@ -231,14 +253,17 @@ namespace BestBet.ViewModels
             {
                 allMatches = new List<Match>();
                 hotMatches = new List<Match>();
+                filteredMatches = new List<Match>();
                 //hotMatches.Add(new Match());
                 //allMatches.Add(new Match());
                 Console.WriteLine("about to invoke upcoming matches");
                 var result = await _rest.getUpcomingMatches(App.sport, App.region);
                 hotMatches.Add(result[0]);
                 allMatches.Add(result[0]);
+                filteredMatches.Add(result[0]);
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("AllMatches"));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("HotMatches"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("FilteredMatches"));
                 List<Match> tempMatches = new List<Match>();
                 foreach (var match in result)
                 {
@@ -308,6 +333,7 @@ namespace BestBet.ViewModels
                     //}
                 }
                 allMatches = temp_result;
+                filteredMatches = allMatches;
                 tempMatches.Clear();
                 for (int i = 0; i < 3; i++)
                 {
@@ -326,7 +352,7 @@ namespace BestBet.ViewModels
                 HotMatches = tempMatches;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("AllMatches"));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("HotMatches"));
-
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("FilteredMatches"));
                 return true;
 
             }
@@ -339,6 +365,8 @@ namespace BestBet.ViewModels
 
         public ICommand TapCommand { get; private set; }
 
+        public ICommand SportTapCommand { get; private set; }
+
         private void InitCommands()
         {
             TapCommand = new Command<Match>(
@@ -347,8 +375,21 @@ namespace BestBet.ViewModels
                     MatchesPage matchesPage = new MatchesPage(match);
                     Application.Current.MainPage.Navigation.PushAsync(matchesPage);
                     });
+            SportTapCommand = new Command<Sport>(sport =>
+            {
+                Console.WriteLine("sport tap command fired");
+                filteredMatches.Clear();
+                foreach(var match in allMatches)
+                {
+                    if(match.sport_key == sport.key)
+                    {
+                        filteredMatches.Add(match);
+                    }
+                }
 
-            
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("FilteredMatches"));
+            });
+
         }
 
     }
