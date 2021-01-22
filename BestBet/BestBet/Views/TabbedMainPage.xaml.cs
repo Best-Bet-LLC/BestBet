@@ -37,109 +37,98 @@ namespace BestBet.Views
             InitializeComponent();
 
             updateDB();
-
-            HorizontalListView.PreRevealAnimationAsync = async (viewCell) =>
+            var t = Task.Run(() =>
             {
-                viewCell.View.Opacity = 0;
+                Xamarin.Forms.Device.BeginInvokeOnMainThread(async () => {
 
-                if (HorizontalListView.ListLayout == HorizontalListViewLayout.Vertical)
+                HorizontalListView.PreRevealAnimationAsync = async (viewCell) =>
                 {
-                    viewCell.View.RotationX = 90;
-                }
-                else
+                    viewCell.View.Opacity = 0;
+
+                    if (HorizontalListView.ListLayout == HorizontalListViewLayout.Vertical)
+                    {
+                        viewCell.View.RotationX = 90;
+                    }
+                    else
+                    {
+                        viewCell.View.RotationY = -90;
+                    }
+                };
+
+                HorizontalListView.RevealAnimationAsync = async (viewCell) =>
                 {
-                    viewCell.View.RotationY = -90;
-                }
-            };
+                    await viewCell.View.FadeTo(1);
 
-            HorizontalListView.RevealAnimationAsync = async (viewCell) =>
-            {
-                await viewCell.View.FadeTo(1);
+                    if (HorizontalListView.ListLayout == HorizontalListViewLayout.Vertical)
+                    {
+                        await viewCell.View.RotateXTo(0);
+                    }
+                    else
+                    {
+                        await viewCell.View.RotateYTo(0);
+                    }
+                };
 
-                if (HorizontalListView.ListLayout == HorizontalListViewLayout.Vertical)
+
+
+                HorizontalListViewHot.PreRevealAnimationAsync = async (viewCell) =>
                 {
-                    await viewCell.View.RotateXTo(0);
-                }
-                else
+                    viewCell.View.Opacity = 0;
+
+                    if (HorizontalListViewHot.ListLayout == HorizontalListViewLayout.Vertical)
+                    {
+                        viewCell.View.RotationX = 90;
+                    }
+                    else
+                    {
+                        viewCell.View.RotationY = -90;
+                    }
+                };
+
+                HorizontalListViewHot.RevealAnimationAsync = async (viewCell) =>
                 {
-                    await viewCell.View.RotateYTo(0);
-                }
-            };
+                    await viewCell.View.FadeTo(1);
 
+                    if (HorizontalListViewHot.ListLayout == HorizontalListViewLayout.Vertical)
+                    {
+                        await viewCell.View.RotateXTo(0);
+                    }
+                    else
+                    {
+                        await viewCell.View.RotateYTo(0);
+                    }
+                };
 
-
-            HorizontalListViewHot.PreRevealAnimationAsync = async (viewCell) =>
-            {
-                viewCell.View.Opacity = 0;
-
-                if (HorizontalListViewHot.ListLayout == HorizontalListViewLayout.Vertical)
+                HorizontalListViewSports.PreRevealAnimationAsync = async (viewCell) =>
                 {
-                    viewCell.View.RotationX = 90;
-                }
-                else
+                    viewCell.View.Opacity = 0;
+
+                    if (HorizontalListViewSports.ListLayout == HorizontalListViewLayout.Vertical)
+                    {
+                        viewCell.View.RotationX = 90;
+                    }
+                    else
+                    {
+                        viewCell.View.RotationY = -90;
+                    }
+                };
+
+                HorizontalListViewSports.RevealAnimationAsync = async (viewCell) =>
                 {
-                    viewCell.View.RotationY = -90;
-                }
-            };
+                    await viewCell.View.FadeTo(1);
 
-            HorizontalListViewHot.RevealAnimationAsync = async (viewCell) =>
-            {
-                await viewCell.View.FadeTo(1);
+                    if (HorizontalListViewSports.ListLayout == HorizontalListViewLayout.Vertical)
+                    {
+                        await viewCell.View.RotateXTo(0);
+                    }
+                    else
+                    {
+                        await viewCell.View.RotateYTo(0);
+                    }
+                };
+                });
+            });
 
-                if (HorizontalListViewHot.ListLayout == HorizontalListViewLayout.Vertical)
-                {
-                    await viewCell.View.RotateXTo(0);
-                }
-                else
-                {
-                    await viewCell.View.RotateYTo(0);
-                }
-            };
-
-            HorizontalListViewSports.PreRevealAnimationAsync = async (viewCell) =>
-            {
-                viewCell.View.Opacity = 0;
-
-                if (HorizontalListViewSports.ListLayout == HorizontalListViewLayout.Vertical)
-                {
-                    viewCell.View.RotationX = 90;
-                }
-                else
-                {
-                    viewCell.View.RotationY = -90;
-                }
-            };
-
-            HorizontalListViewSports.RevealAnimationAsync = async (viewCell) =>
-            {
-                await viewCell.View.FadeTo(1);
-
-                if (HorizontalListViewSports.ListLayout == HorizontalListViewLayout.Vertical)
-                {
-                    await viewCell.View.RotateXTo(0);
-                }
-                else
-                {
-                    await viewCell.View.RotateYTo(0);
-                }
-            };
-            //try
-            //{
-            //    if (Application.Current.Properties["bookmakers"] == null)
-            //    {
-            //        Application.Current.Properties["bookmakers"] = new List<string>() { "DraftKings", "Unibet", "PointsBet (US)", "BetOnline.ag", "Betfair", "BetRivers", "Bookmaker", "Bovada", "FanDuel", "GTbets", "Intertops", "LowVig.ag", "MyBookie.ag", "William Hill (US)" };
-
-            //    }
-            //} catch (KeyNotFoundException keyEx)
-            //{
-            //    Application.Current.Properties["bookmakers"] = new List<string>() { "DraftKings", "Unibet", "PointsBet (US)", "BetOnline.ag", "Betfair", "BetRivers", "Bookmaker", "Bovada", "FanDuel", "GTbets", "Intertops", "LowVig.ag", "MyBookie.ag", "William Hill (US)" };
-            //} catch (Exception ex)
-            //{
-            //    Console.WriteLine($"crash: {ex.Message}");
-            //}
-
-
-            //BindingContext = this;
         }
 
         private async void updateDB()

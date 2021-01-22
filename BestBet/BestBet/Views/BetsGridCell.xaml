@@ -31,9 +31,9 @@
                                                         <ColumnDefinition Width="*" />
                                                         <ColumnDefinition Width=".2*" />
                                                     </Grid.ColumnDefinitions>
-                                                    <Label Text="{Binding site_key}" Margin="0,12,0,0" FontFamily="Bebas Neue" TextColor="#DFAD41" FontSize="23" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="1" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HorizontalTextAlignment="Center"  MaxLines="2" LineBreakMode="WordWrap"/>
+                                                    <Label Text="test" Margin="0,12,0,0" FontFamily="Bebas Neue" TextColor="#DFAD41" FontSize="23" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="1" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HorizontalTextAlignment="Center"  MaxLines="2" LineBreakMode="WordWrap"/>
                                                     <Label Text="vs" FontFamily="Bebas Neue" TextColor="Black" FontSize="12" Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="1" HorizontalOptions="Center" MaxLines="1" HorizontalTextAlignment="Center" LineBreakMode="WordWrap" VerticalOptions="Center"/>                                          
-                                                    <Label Text="{Binding site_nice}" Margin="0,5,5,0" FontFamily="Bebas Neue" TextColor="#DFAD41" FontSize="23"  Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="1" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HorizontalTextAlignment="Center" MaxLines="2" LineBreakMode="WordWrap"/>
+                                                    <Label Text="tetsing" Margin="0,5,5,0" FontFamily="Bebas Neue" TextColor="#DFAD41" FontSize="23"  Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="1" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HorizontalTextAlignment="Center" MaxLines="2" LineBreakMode="WordWrap"/>
 
                                                     
 

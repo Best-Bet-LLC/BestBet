@@ -18,7 +18,7 @@ namespace BestBet.Views
             InitializeComponent();
             bool singleMatchViewIn = true;
             BindingContext = new OddsViewModel(matchIn, singleMatchViewIn);
-           
+            
         }
 
         public MatchesPage(string sport, string region)

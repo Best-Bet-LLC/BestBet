@@ -38,22 +38,19 @@
                         BackgroundColor="{StaticResource Background_Gray}"
                         IsClippedToBounds="True">
                         
-                            <views:MatchesGridCell
-                               Margin="0,0,0,0"
-                                Padding="0,0,0,0"
+                            <views:BetsGridCell
+                                Margin="16,13,16,13"
                                 BackgroundColor="{StaticResource Background_Gray}"
-                                CornerRadius="0"
-                                BorderColor="{StaticResource Background_Gray}">
-                                <views:MatchesGridCell.Triggers>
+                                CornerRadius="10">
+                                <views:BetsGridCell.Triggers>
                                     <DataTrigger
                                         Binding="{Binding Source={x:Reference DraggableViewCell}, Path=IsDragAndDropping}"
-                                        TargetType="views:MatchesGridCell"
+                                        TargetType="views:BetsGridCell"
                                         Value="True">
                                         <Setter Property="BackgroundColor" Value="{StaticResource Background_Gray}" />
                                     </DataTrigger>
-                                </views:MatchesGridCell.Triggers>
-                            </views:MatchesGridCell>
-                        
+                                </views:BetsGridCell.Triggers>
+                            </views:BetsGridCell>
                     </ContentView>
                 </sho:DraggableViewCell>
             </DataTemplate>
@@ -91,10 +88,7 @@
             <DataTemplate x:Key="VerticalDudeTemplate">
                 <sho:DraggableViewCell x:Name="DraggableViewCell">
                     <ContentView>
-                        <sho:Shadows
-                            x:Name="Shadow"
-                            CornerRadius="10"
-                            Shades="{StaticResource Background_Gray}">
+                        
                             <views:BetsGridCell
                                 Margin="16,13,16,13"
                                 BackgroundColor="{StaticResource Background_Gray}"
@@ -108,7 +102,6 @@
                                     </DataTrigger>
                                 </views:BetsGridCell.Triggers>
                             </views:BetsGridCell>
-                        </sho:Shadows>
                     </ContentView>
                 </sho:DraggableViewCell>
             </DataTemplate>
@@ -126,13 +119,13 @@
     <ContentPage.Content>
         <Grid BackgroundColor="{StaticResource Background_Gray}">
         <Grid.RowDefinitions>
-            <RowDefinition Height=".2*" />
+            <RowDefinition Height="100" />
             <RowDefinition Height="*" />
-            <RowDefinition Height=".15*" />
+            <RowDefinition Height="75" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width=".4*" />
+            <ColumnDefinition Width=".3*" />
         </Grid.ColumnDefinitions>
         
 
@@ -166,7 +159,7 @@
         
        
                         <StackLayout Spacing="0" Grid.Row="1" Grid.RowSpan="1" Grid.ColumnSpan="2"  Margin="0" Padding="0">
-                            <ScrollView  Margin="0" Padding="0" HeightRequest="500" VerticalOptions="FillAndExpand">
+                            
                                 <Grid  Margin="0" Padding="0">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*" />
@@ -179,7 +172,7 @@
                                 
                                 <Grid Padding="10,15,10,15" BackgroundColor="White">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height=".2*"/>
+                                        <RowDefinition Height="40"/>
                                         <RowDefinition Height=".2*" />
                                         <RowDefinition Height="*" />
                                         <RowDefinition Height=".2*" />
@@ -189,12 +182,12 @@
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
                                     <Image Source="livegame_icon.jpg" IsVisible="{Binding SelectedMatch.isMatchLive}" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Start"/>
-                                    <Label Text="{Binding SelectedMatch.matchTime}" Margin="0,0,0,0" FontFamily="Bebas Neue" FontSize="20" TextColor="{Binding IsLive}" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Start" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" MaxLines="1"/>
-                                    <Label Text="{Binding SelectedMatch.awayTeam}" FontFamily="Bebas Neue" FontSize="35" TextColor="{StaticResource Primary}" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" MaxLines="1"/>
+                                    <Label Text="{Binding SelectedMatch.matchTime}" Margin="0,0,0,0" FontFamily="Bebas Neue" FontSize="20" TextColor="{Binding IsLive}" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" MaxLines="1"/>
+                                    <Label Text="{Binding SelectedMatch.awayTeam}" FontFamily="Bebas Neue" FontSize="35" TextColor="{StaticResource Accent}" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" MaxLines="1"/>
                                                       
-                                   <Forms9Patch:Label Text="{Binding SelectedMatch.home_team}" FontFamily="Bebas Neue" FontSize="35" TextColor="{StaticResource Primary}" Grid.Row="3" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" MaxLines="1"/>
+                                   <Forms9Patch:Label Text="{Binding SelectedMatch.home_team}" FontFamily="Bebas Neue" FontSize="35" TextColor="{StaticResource Accent}" Grid.Row="3" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" MaxLines="1"/>
 
-                                     <!--<sho:HorizontalListView
+                                     <sho:HorizontalListView
                                         x:Name="HorizontalListViewBets"
                                         CollectionPadding="0,0,0,0"
                                         Margin="5,0,5,0"
@@ -202,13 +195,17 @@
                                         EnableDragAndDrop="False"
                                         ItemsSource="{Binding Sites}"
                                         ItemTemplate="{StaticResource DudeTemplateSelector}"
-                                        ListLayout="Vertical"
+                                        ListLayout="Grid"
                                         SnapStyle="Center"
-                                        ColumnCount="6"
+                                        ColumnCount="1"
+                                        ItemHeight="75"
+                                        ItemWidth="75"
                                         Grid.Row="2"
-                                        Grid.Column="0"/>-->
+                                        Grid.Column="0"/>
 
-                                    <ListView Grid.Row="2" Grid.Column="0" ItemsSource="{Binding Sites}">
+                                    <!--<ScrollView  Margin="0" Padding="0" Grid.Row="2" Grid.Column="0" VerticalOptions="FillAndExpand">
+
+                                    <ListView ItemsSource="{Binding Sites}">
                                         <ListView.ItemTemplate>
                                               <DataTemplate>
                                                 <ViewCell>
@@ -216,20 +213,51 @@
                                                     HorizontalOptions="FillAndExpand"
                                                     VerticalOptions="StartAndExpand">
 
-                                                    <Label Text="testtt"
+                                                   
+                                                        <Label Text="{Binding site_nice}"
                                                         FontSize="18"
-                                                        TextColor="Black"
+                                                        TextColor="{StaticResource Primary}"
+                                                        FontFamily="Bebas Neue"
                                                         VerticalOptions="StartAndExpand" />
-                                                         <!--<Label Text="{Binding site_key}"
+                                                        <Label Text="{Binding odds.h2h_away}"
                                                         FontSize="18"
-                                                        TextColor="Black"
-                                                        VerticalOptions="StartAndExpand" />-->  
+                                                        TextColor="{StaticResource Primary}"
+                                                        FontFamily="Bebas Neue"
+                                                        VerticalOptions="StartAndExpand" /> 
                                                 </StackLayout>
                                                 </ViewCell>
                                               </DataTemplate>
                                             </ListView.ItemTemplate>
                                     </ListView>
+                                    </ScrollView>-->
 
+                                    <ScrollView  Margin="0" Padding="0" Grid.Row="4" Grid.Column="0" VerticalOptions="FillAndExpand">
+                                    <ListView ItemsSource="{Binding Sites}">
+                                        <ListView.ItemTemplate>
+                                              <DataTemplate>
+                                                <ViewCell>
+                                                    <StackLayout
+                                                        Orientation="Horizontal"
+                                                    HorizontalOptions="FillAndExpand"
+                                                    VerticalOptions="StartAndExpand">
+
+                                                   
+                                                        <Label Text="{Binding site_nice}"
+                                                        FontSize="18"
+                                                        TextColor="{StaticResource Primary}"
+                                                        FontFamily="Bebas Neue"
+                                                        VerticalOptions="StartAndExpand" />
+                                                        <Label Text="{Binding odds.h2h_home}"
+                                                        FontSize="18"
+                                                        TextColor="{StaticResource Primary}"
+                                                        FontFamily="Bebas Neue"
+                                                        VerticalOptions="StartAndExpand" /> 
+                                                </StackLayout>
+                                                </ViewCell>
+                                              </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                    </ListView>
+                                    </ScrollView>
 
                                     </Grid>
                                    </Frame.Content>
@@ -237,7 +265,7 @@
                                 </Frame.Content>
                                 </Frame>
                                     </Grid>
-                                </ScrollView>
+                               
                                 <Grid Grid.Row="2">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="*"/>

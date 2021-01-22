@@ -8,8 +8,100 @@ namespace BestBet.Models
 {
     public class Odds 
     {
+        public event PropertyChangedEventHandler PropertyChanged;
         public IList<double> h2h { get; set; }
         public IList<double> h2h_lay { get; set; }
+
+        public double h2h_tie
+        {
+            get
+            {
+                if (h2h.Count == 3)
+                {
+                    return getAmerican(h2h[2]);
+                }
+                else return 0;
+
+            }
+            set
+            {
+                try
+                {
+                    
+                        h2h_tie = value;
+                        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("h2h_tie"));
+                    
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"crash: {ex.Message}");
+                }
+            }
+        }
+
+        public double h2h_away
+        {
+            get
+            {
+                return getAmerican(h2h[1]);
+
+            }
+            set
+            {
+                try
+                {
+                    
+                        h2h_away = value;
+                        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("h2h_away"));
+                    
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"crash: {ex.Message}");
+                }
+            }
+        }
+        public int h2h_home
+        {
+            get
+            {
+                return getAmerican(h2h[0]);
+
+            }
+            set
+            {
+                try
+                {
+                    
+                        h2h_home = value;
+                        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("h2h_home"));
+                    
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"crash: {ex.Message}");
+                }
+            }
+        }
+
+        public int getAmerican(double decimalOdds)
+        {
+            int americanOdds;
+            if (decimalOdds == 1)
+            {
+                return (int)(-100 / (.01));
+            }
+            if (decimalOdds >= 2.00)
+            {
+                americanOdds = (int)((decimalOdds - 1) * 100);
+            }
+            else
+            {
+                americanOdds = (int)(-100 / (decimalOdds - 1));
+            }
+
+            return americanOdds;
+        }
     }
 
     public class Site

@@ -51,7 +51,7 @@ namespace BestBet.ViewModels
 
         private List<Site> sites;
 
-        private List<Site> Sites
+        public List<Site> Sites
         {
             get
             {
@@ -194,7 +194,7 @@ namespace BestBet.ViewModels
                 sites = selectedMatch.sites;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SelectedMatch"));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Sites"));
-                getOdds(); //for testing purposes, remove for go live
+                //getOdds(); //for testing purposes, remove for go live
             } else
             {
                 getOdds();
