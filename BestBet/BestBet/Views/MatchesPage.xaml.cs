@@ -38,5 +38,10 @@ namespace BestBet.Views
         {
             App.Current.MainPage.Navigation.PushModalAsync(new FilterBooksModal());
         }
+
+        void back_clicked(System.Object sender, System.EventArgs e)
+        {
+            App.Current.MainPage.Navigation.PopAsync();
+        }
     }
 }

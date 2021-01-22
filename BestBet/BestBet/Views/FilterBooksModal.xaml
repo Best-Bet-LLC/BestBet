@@ -45,7 +45,7 @@
                                 <!--<CheckBox x:Name="CheckBox" Grid.Row="0" Grid.Column="0" VerticalOptions="Center" CheckedChanged="CheckBox_CheckedChanged" Color="LightGreen"   IsChecked="{Binding IsSelected}"/>-->
                                 <CheckBox x:Name="CheckBox" CheckedChanged="CheckBox_CheckedChanged" Grid.Row="0" Grid.Column="0" VerticalOptions="Center" Color="Blue"   IsChecked="{Binding isSelected}"/>
                       
-                                <Label x:Name="book" TextColor="Black" Text="{Binding name}" Grid.Row="0" Grid.Column="1" FontSize="Large" VerticalOptions="Center" VerticalTextAlignment="Center"/>
+                                <Label x:Name="book" TextColor="{StaticResource Primary}" Text="{Binding name}" FontFamily="Bebas Neue" Grid.Row="0" Grid.Column="1" FontSize="Large" VerticalOptions="Center" VerticalTextAlignment="Center"/>
                                 <Image Source="{Binding image}" Grid.Row="0" Grid.Column="2"/>
                               </Grid>
                             </Frame.Content>

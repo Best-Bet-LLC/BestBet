@@ -4,47 +4,41 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="BestBet.Views.BetsGridCell"
     xmlns:viewModels="clr-namespace:BestBet.ViewModels"
-    Margin="0,0,0,0"
+    Margin="2.5"
+    Padding="0"
     HasShadow="False"
-    BorderColor="{StaticResource Background_Gray}"
-    BackgroundColor="{StaticResource Background_Gray}"
+    BorderColor="White"
+    BackgroundColor="White"
+    HorizontalOptions="Fill"
+    VerticalOptions="Fill"
+    MinimumHeightRequest="75"
+    HeightRequest="75"
     xmlns:Forms9Patch="clr-namespace:Forms9Patch;assembly=Forms9Patch">
-    <RelativeLayout HeightRequest="70" WidthRequest="75" BackgroundColor="{StaticResource Background_Gray}">
-            <StackLayout HeightRequest="70" WidthRequest="75" BackgroundColor="{StaticResource Background_Gray}">
-                    <Grid BackgroundColor="{StaticResource Background_Gray}" Margin="5,5,5,5"	>
-                                    <Grid.RowDefinitions>
-                                        
-                                        <RowDefinition Height="*" />
-                                    </Grid.RowDefinitions>
-                                    
-                                  
-                                           <Forms9Patch:Frame Padding="5,0,0,5" HasShadow="True" BackgroundColor="White" Grid.Row="0" IsClippedToBounds="True">
-                                                <Forms9Patch:Frame.Content>
-                                                <Grid BackgroundColor="White" Margin="0,0,0,0">
-                                                    <Grid.RowDefinitions>
-                                                        <RowDefinition Height="*" />
-                                                        <RowDefinition Height="*" />
-                                                        <RowDefinition Height="*" />
-                                                        <RowDefinition Height="*" />
-                                                    </Grid.RowDefinitions>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="*" />
-                                                        <ColumnDefinition Width=".2*" />
-                                                    </Grid.ColumnDefinitions>
-                                                    <Label Text="test" Margin="0,12,0,0" FontFamily="Bebas Neue" TextColor="#DFAD41" FontSize="23" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="1" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HorizontalTextAlignment="Center"  MaxLines="2" LineBreakMode="WordWrap"/>
-                                                    <Label Text="vs" FontFamily="Bebas Neue" TextColor="Black" FontSize="12" Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="1" HorizontalOptions="Center" MaxLines="1" HorizontalTextAlignment="Center" LineBreakMode="WordWrap" VerticalOptions="Center"/>                                          
-                                                    <Label Text="tetsing" Margin="0,5,5,0" FontFamily="Bebas Neue" TextColor="#DFAD41" FontSize="23"  Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="1" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HorizontalTextAlignment="Center" MaxLines="2" LineBreakMode="WordWrap"/>
+            <StackLayout BackgroundColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  MinimumHeightRequest="75" HeightRequest="75">
+                    
+                <Grid BackgroundColor="White" Margin="0,0,0,0" HorizontalOptions="Fill" VerticalOptions="Fill"  MinimumHeightRequest="75" HeightRequest="75">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <!--<RowDefinition Height=".4*" />-->
+                        <RowDefinition Height=".5*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Image Source="{Binding awaySiteImage}" Margin="2.5, 0, 2.5, 0" Grid.Row="0" Grid.Column="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
+                    <!--<Forms9Patch:Label Text="{Binding site_nice}" Margin="5, 0, 5, 0" Grid.Row="1" Grid.Column="0" FontFamily="Bebas Neue" TextColor="#DFAD41" FontSize="18" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>-->
+                    <Forms9Patch:Label Text="{Binding odds.h2h_away}" Margin="2.5, 0, 2.5, 0" Grid.Row="1" Grid.Column="0" FontFamily="Bebas Neue" TextColor="#DFAD41" FontSize="18" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
 
-                                                    
+                    <Image Source="{Binding awaySiteImage}" Margin="2.5, 0, 2.5, 0" Grid.Row="0" Grid.Column="1" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
+                    <!--<Forms9Patch:Label Text="{Binding site_nice}" Margin="5, 0, 5, 0" Grid.Row="1" Grid.Column="1" FontFamily="Bebas Neue" TextColor="#DFAD41" FontSize="18" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>-->
+                    <Forms9Patch:Label Text="{Binding odds.h2h_away}" Margin="2.5, 0, 2.5, 0" Grid.Row="1" Grid.Column="1" FontFamily="Bebas Neue" TextColor="#DFAD41" FontSize="18" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
 
-                                                    </Grid>
-                                                </Forms9Patch:Frame.Content>
-                                              </Forms9Patch:Frame>
-                                       
-                                    
-                                    
-                                     </Grid>
-                                    </StackLayout>
+                    <Image Source="{Binding awaySiteImage}" Margin="2.5, 0, 2.5, 0" Grid.Row="0" Grid.Column="2" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
+                    <!--<Forms9Patch:Label Text="{Binding site_nice}" Margin="5, 0, 5, 0" Grid.Row="1" Grid.Column="2" FontFamily="Bebas Neue" TextColor="#DFAD41" FontSize="18" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>-->
+                    <Forms9Patch:Label Text="{Binding odds.h2h_away}" Margin="2.5, 0, 2.5, 0" Grid.Row="1" Grid.Column="2" FontFamily="Bebas Neue" TextColor="#DFAD41" FontSize="18" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                    </Grid>
+                </StackLayout>
                                    
-                         </RelativeLayout>
 </Frame>

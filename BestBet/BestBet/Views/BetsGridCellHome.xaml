@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Frame
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="BestBet.Views.BetsGridCellHome"
+    xmlns:viewModels="clr-namespace:BestBet.ViewModels"
+    Margin="2.5"
+    Padding="0"
+    HasShadow="False"
+    BorderColor="White"
+    BackgroundColor="White"
+    HorizontalOptions="Fill"
+    VerticalOptions="Fill"
+    MinimumHeightRequest="100"
+    HeightRequest="100"
+    xmlns:Forms9Patch="clr-namespace:Forms9Patch;assembly=Forms9Patch">
+            <StackLayout BackgroundColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" MinimumHeightRequest="75" HeightRequest="75">
+                    
+                <Grid BackgroundColor="White" Margin="0,0,0,0" HorizontalOptions="Fill" VerticalOptions="Fill" MinimumHeightRequest="75" HeightRequest="75">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <!--<RowDefinition Height=".4*" />-->
+                        <RowDefinition Height=".5*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Image Source="{Binding homeSiteImage}" Margin="2.5, 0, 2.5, 0" Grid.Row="0" Grid.Column="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
+                   <!--<Forms9Patch:Label Text="{Binding site_nice}" Margin="5, 0, 5, 0" Grid.Row="1" Grid.Column="0" FontFamily="Bebas Neue" TextColor="#DFAD41" FontSize="18" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>-->
+                    <Forms9Patch:Label Text="{Binding odds.h2h_home}" Margin="2.5, 0, 2.5, 0" Grid.Row="1" Grid.Column="0" FontFamily="Bebas Neue" TextColor="#DFAD41" FontSize="18" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+
+                    <Image Source="{Binding homeSiteImage}" Margin="2.5, 0, 2.5, 0" Grid.Row="0" Grid.Column="1" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
+                    <!--<Forms9Patch:Label Text="{Binding site_nice}" Margin="5, 0, 5, 0" Grid.Row="1" Grid.Column="1" FontFamily="Bebas Neue" TextColor="#DFAD41" FontSize="18" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>-->
+                    <Forms9Patch:Label Text="{Binding odds.h2h_home}" Margin="2.5, 0, 2.5, 0" Grid.Row="1" Grid.Column="1" FontFamily="Bebas Neue" TextColor="#DFAD41" FontSize="18" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+
+                    <Image Source="{Binding homeSiteImage}" Margin="2.5, 0, 2.5, 0" Grid.Row="0" Grid.Column="2" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
+                    <!--<Forms9Patch:Label Text="{Binding site_nice}" Margin="5, 0, 5, 0" Grid.Row="1" Grid.Column="2" FontFamily="Bebas Neue" TextColor="#DFAD41" FontSize="18" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>-->
+                    <Forms9Patch:Label Text="{Binding odds.h2h_home}" Margin="2.5, 0, 2.5, 0" Grid.Row="1" Grid.Column="2" FontFamily="Bebas Neue" TextColor="#DFAD41" FontSize="18" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                   </Grid>
+                </StackLayout>
+                                   
+</Frame>

@@ -12,15 +12,24 @@ namespace BestBet.Models
         public IList<double> h2h { get; set; }
         public IList<double> h2h_lay { get; set; }
 
-        public double h2h_tie
+        public string h2h_tie
         {
             get
             {
                 if (h2h.Count == 3)
                 {
-                    return getAmerican(h2h[2]);
+                    var odds = getAmerican(h2h[2]);
+                    if (odds > 0)
+                    {
+                       return $"+{odds}";
+                    }
+                    else
+                    {
+                        return odds.ToString();
+                    }
+                    
                 }
-                else return 0;
+                else return null;
 
             }
             set
@@ -39,11 +48,19 @@ namespace BestBet.Models
             }
         }
 
-        public double h2h_away
+        public string h2h_away
         {
             get
             {
-                return getAmerican(h2h[1]);
+                var odds = getAmerican(h2h[1]);
+                if (odds > 0)
+                {
+                    return $"+{odds}";
+                }
+                else
+                {
+                    return odds.ToString();
+                }
 
             }
             set
@@ -61,12 +78,19 @@ namespace BestBet.Models
                 }
             }
         }
-        public int h2h_home
+        public string h2h_home
         {
             get
             {
-                return getAmerican(h2h[0]);
-
+                var odds = getAmerican(h2h[0]);
+                if (odds > 0)
+                {
+                    return $"+{odds}";
+                }
+                else
+                {
+                    return odds.ToString();
+                }
             }
             set
             {
@@ -110,6 +134,51 @@ namespace BestBet.Models
         public string site_nice { get; set; }
         public int last_update { get; set; }
         public Odds odds { get; set; }
+        
+        public string homeSiteImage
+        {
+            get
+            {
+                switch (site_nice)
+                {
+                    case "PointsBet (US)": return "PointsBet.png";
+                    case "William Hill (US)": return "WilliamHill.jpg";
+                    case "LowVig.ag": return "LowVig.png";
+                    case "MyBookie.ag": return "MyBookie.png";
+                    case "SugarHouse": return "SugarHouse.png";
+                    default: return $"{site_nice}.png";
+                }
+            }
+
+            set
+            {
+                homeSiteImage = value;
+            }
+
+        }
+
+        public string awaySiteImage
+        {
+            get
+            {
+                switch (site_nice)
+                {
+                    case "PointsBet (US)": return "PointsBet.png";
+                    case "William Hill (US)": return "WilliamHill.jpg";
+                    case "LowVig.ag": return "LowVig.png";
+                    case "MyBookie.ag": return "MyBookie.png";
+                    case "Sugarhouse": return "SugarHouse.png";
+                    default: return $"{site_nice}.png";
+                }
+            }
+
+            set
+            {
+                awaySiteImage = value;
+            }
+
+        }
+
     }
 
     public class Match : INotifyPropertyChanged
