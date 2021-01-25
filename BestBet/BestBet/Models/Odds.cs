@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Drawing;
+using Xamarin.Essentials;
 
 namespace BestBet.Models
 {
@@ -11,6 +12,81 @@ namespace BestBet.Models
         public event PropertyChangedEventHandler PropertyChanged;
         public IList<double> h2h { get; set; }
         public IList<double> h2h_lay { get; set; }
+        private bool isBestH2HHomeBet { get; set; }
+        private bool isBestH2HAwayBet { get; set; }
+
+
+        public bool IsBestH2HHomeBet
+        {
+            get
+            {
+                return isBestH2HHomeBet;
+            }
+            set
+            {
+                try
+                {
+                   
+                    if (value)
+                    {
+                        homeH2HBackground = ColorConverters.FromHex("#dfad41");
+                        homeH2HTextColor = Color.White;
+                    }
+                    else
+                    {
+                        homeH2HBackground = Color.Transparent;
+                        homeH2HTextColor = ColorConverters.FromHex("#dfad41");
+                    }
+                    isBestH2HHomeBet = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IsBestH2HHomeBet"));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("homeH2HBackground"));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("homeH2HTextColor"));
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"crash: {ex.Message}");
+                }
+            }
+        }
+        public Color homeH2HBackground { get; set; }
+        public Color homeH2HTextColor { get; set; }
+
+        public bool IsBestH2HAwayBet
+        {
+            get
+            {
+                return isBestH2HAwayBet;
+            }
+            set
+            {
+                try
+                {
+                    
+                    if (value)
+                    {
+                        awayH2HBackground = ColorConverters.FromHex("#dfad41");
+                        awayH2HTextColor = Color.White;
+                    }
+                    else
+                    {
+                        awayH2HBackground = Color.Transparent;
+                        awayH2HTextColor = ColorConverters.FromHex("#dfad41");
+                    }
+                    isBestH2HAwayBet = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IsBestH2HAwayBet"));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("awayH2HBackground"));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("awayH2HTextColor"));
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"crash: {ex.Message}");
+                }
+            }
+        }
+        public Color awayH2HBackground { get; set; }
+        public Color awayH2HTextColor { get; set; }
 
         public string h2h_tie
         {
@@ -268,14 +344,20 @@ namespace BestBet.Models
             {
                 List<string> arrayOfOdds = new List<string>();
                 var tempBestOdds = -100000;
+                Site bestSite = new Site();
+                
                 if (home_team == teams[0])
                 {
                     foreach (var site in sites)
                     {
                         var odds = getAmerican(site.odds.h2h[0]);
+                        site.odds.IsBestH2HHomeBet = false;
                         if (tempBestOdds < odds)
                         {
                             tempBestOdds = odds;
+                            bestSite = site;
+                            
+                            
                             if (odds > 0)
                             {
                                 bestHomeOdds = $"+{odds}";
@@ -291,22 +373,27 @@ namespace BestBet.Models
                         }
                     }
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("BestHomeSite"));
+                   
                     //switch (bestHomeSite)
                     //{
                     //    case "PointsBet (US)": awaySiteImage = "PointsBet.png"; break;
                     //    case "William Hill (US)": awaySiteImage = "WilliamHill.png"; break;
                     //    default: homeSiteImage = $"{bestHomeSite}.png"; break;
                     //}
-                    return arrayOfOdds;
+                    
                 }
                 else
                 {
                     foreach (var site in sites)
                     {
                         var odds = getAmerican(site.odds.h2h[1]);
+                        site.odds.IsBestH2HHomeBet = false;
                         if (tempBestOdds < odds)
                         {
                             tempBestOdds = odds;
+                            bestSite = site;
+                           
+                            
                             if (odds > 0)
                             {
                                 bestHomeSite = site.site_nice;
@@ -328,8 +415,10 @@ namespace BestBet.Models
                     //    case "William Hill (US)": awaySiteImage = "WilliamHill.png"; break;
                     //    default: homeSiteImage = $"{bestHomeSite}.png"; break;
                     //}
-                    return arrayOfOdds;
+                    
                 }
+                bestSite.odds.IsBestH2HHomeBet = true;
+                return arrayOfOdds;
             }
         }
 
@@ -341,14 +430,21 @@ namespace BestBet.Models
             {
                 var tempBestOdds= -100000;
                 List<string> arrayOfOdds = new List<string>();
+                Site bestSite = new Site();
+                
                 if (home_team == teams[0])
                 {
                     foreach (var site in sites)
                     {
+                        site.odds.IsBestH2HAwayBet = false;
                         var odds = getAmerican(site.odds.h2h[1]);
                         if (tempBestOdds < odds)
                         {
                             tempBestOdds = odds;
+                            
+                            bestSite = site;
+                            
+
                             if (odds > 0)
                             {
                                 bestAwaySite = site.site_nice;
@@ -370,16 +466,21 @@ namespace BestBet.Models
                     //    default: awaySiteImage = $"{bestAwaySite}.png"; break;
                     //}
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("BestAwaySite"));
-                    return arrayOfOdds;
+                    
                 }
                 else
                 {
                     foreach (var site in sites)
                     {
                         var odds = getAmerican(site.odds.h2h[0]);
+                        site.odds.IsBestH2HAwayBet = false;
                         if (tempBestOdds < odds)
                         {
                             tempBestOdds = odds;
+                            
+                            bestSite = site;
+
+                            
                             if (odds > 0)
                             {
                                 bestAwaySite = site.site_nice;
@@ -401,8 +502,10 @@ namespace BestBet.Models
                     //    case "William Hill (US)": awaySiteImage = "WilliamHill.png"; break;
                     //    default: awaySiteImage = $"{bestAwaySite}.png"; break;
                     //}
-                    return arrayOfOdds;
+                    
                 }
+                bestSite.odds.IsBestH2HAwayBet = true;
+                return arrayOfOdds;
             }
         }
 

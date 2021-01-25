@@ -332,6 +332,18 @@ namespace BestBet.ViewModels
                     //        break;
                     //}
                 }
+                //loop through and assign best site here
+                foreach(Match match in temp_result)
+                {
+                    foreach (var site in match.sites)
+                    {
+                        var odds = getAmerican(site.odds.h2h[1]);
+                        site.odds.IsBestH2HHomeBet = false;
+                        if (tempBestOdds < odds)
+                        {
+                            tempBestOdds = odds;
+                            bestSite = site;
+                        }
                 allMatches = temp_result;
                 filteredMatches = allMatches;
                 tempMatches.Clear();
