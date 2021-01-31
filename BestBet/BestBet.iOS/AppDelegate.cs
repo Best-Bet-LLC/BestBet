@@ -5,6 +5,8 @@ using Sharpnado;
 using Foundation;
 using UIKit;
 using Forms9Patch;
+using Amazon;
+using Amazon.Util;
 
 namespace BestBet.iOS
 {
@@ -26,6 +28,11 @@ namespace BestBet.iOS
             
 
             global::Xamarin.Forms.Forms.Init();
+            var loggingConfig = AWSConfigs.LoggingConfig;
+            loggingConfig.LogMetrics = true;
+            loggingConfig.LogResponses = ResponseLoggingOption.Always;
+            loggingConfig.LogMetricsFormat = LogMetricsFormatOption.JSON;
+            loggingConfig.LogTo = LoggingOptions.SystemDiagnostics;
             Sharpnado.Tabs.iOS.Preserver.Preserve();
             Sharpnado.HorizontalListView.iOS.SharpnadoInitializer.Initialize();
             Forms9Patch.iOS.Settings.Initialize(this);

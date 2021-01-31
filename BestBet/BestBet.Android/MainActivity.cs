@@ -1,5 +1,6 @@
 ﻿using System;
-
+using Amazon;
+using Amazon.Util;
 using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
@@ -22,7 +23,11 @@ namespace BestBet.Droid
             SetTheme(Resource.Style.MainTheme);
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
-
+            var loggingConfig = AWSConfigs.LoggingConfig;
+            loggingConfig.LogMetrics = true;
+            loggingConfig.LogResponses = ResponseLoggingOption.Always;
+            loggingConfig.LogMetricsFormat = LogMetricsFormatOption.JSON;
+            loggingConfig.LogTo = LoggingOptions.SystemDiagnostics;
             base.OnCreate(savedInstanceState);
             SharpnadoInitializer.Initialize();
             XamEffects.Droid.Effects.Init();

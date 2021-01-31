@@ -163,10 +163,14 @@
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
-                        
-                                <Frame Padding="5" Margin="5" Grid.Row="0" BackgroundColor="Transparent" BorderColor="Transparent" HasShadow="True">
+                               
+                                <Frame Padding="5" Margin="5" Grid.Row="0" BackgroundColor="Transparent" BorderColor="Transparent" HasShadow="False">
                                     <Frame.Content>
-                                    <Frame Padding="5" Margin="5" Background="White" CornerRadius="10" >
+                                    <sho:Shadows
+                                        x:Name="Shadow"
+                                        CornerRadius="5"
+                                        Shades="{StaticResource DarkNeumorphism}">
+                                    <Frame Padding="5" Margin="5" Background="White" CornerRadius="5" >
                                     <Frame.Content>
                                 
                                 <Grid Margin="0" Padding="0"  BackgroundColor="White">
@@ -220,8 +224,10 @@
                                     </Grid>
                                    </Frame.Content>
                                   </Frame>
+                                 </sho:Shadows>
                                 </Frame.Content>
                                 </Frame>
+                                    
                                     </Grid>
                                
                                 <Grid Grid.Row="2">

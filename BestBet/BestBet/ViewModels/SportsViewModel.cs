@@ -333,17 +333,72 @@ namespace BestBet.ViewModels
                     //}
                 }
                 //loop through and assign best site here
-                foreach(Match match in temp_result)
+                
+                
+                foreach (Match match in temp_result)
                 {
-                    foreach (var site in match.sites)
+                    assignMatchTime(match);
+                    
+                    if (match.home_team == match.teams[0])
                     {
-                        var odds = getAmerican(site.odds.h2h[1]);
-                        site.odds.IsBestH2HHomeBet = false;
-                        if (tempBestOdds < odds)
+                        var BestHomeSite = assignBestHomeBet(match.sites, 0);
+                        var BestAwaySite = assignBestAwayBet(match.sites, 1);
+
+                        if (BestHomeSite.odds.h2h[0] > 0)
                         {
-                            tempBestOdds = odds;
-                            bestSite = site;
+                            match.bestHomeOdds = $"+{BestHomeSite.odds.h2h[0]}";
+                            match.BestHomeSite = BestHomeSite.site_nice;
+                            //match.Add($"+{odds}");
                         }
+                        else
+                        {
+                            match.bestHomeOdds = BestHomeSite.odds.h2h[0].ToString();
+                            match.BestHomeSite = BestHomeSite.site_nice;
+                            // arrayOfOdds.Add(odds.ToString());
+                        }
+                        if (BestAwaySite.odds.h2h[0] > 0)
+                        {
+                            match.bestAwayOdds = $"+{BestAwaySite.odds.h2h[1]}";
+                            match.BestAwaySite = BestAwaySite.site_nice;
+                            //match.Add($"+{odds}");
+                        }
+                        else
+                        {
+                            match.bestAwayOdds = BestAwaySite.odds.h2h[1].ToString();
+                            match.BestAwaySite = BestAwaySite.site_nice;
+                            // arrayOfOdds.Add(odds.ToString());
+                        }
+                    } else
+                    {
+                        var BestHomeSite = assignBestHomeBet(match.sites, 1);
+                        var BestAwaySite = assignBestAwayBet(match.sites, 0);
+
+                        if (BestHomeSite.odds.h2h[1] > 0)
+                        {
+                            match.bestHomeOdds = $"+{BestHomeSite.odds.h2h[1]}";
+                            match.BestHomeSite = BestHomeSite.site_nice;
+                            //match.Add($"+{odds}");
+                        }
+                        else
+                        {
+                            match.bestHomeOdds = BestHomeSite.odds.h2h[1].ToString();
+                            match.BestHomeSite = BestHomeSite.site_nice;
+                            // arrayOfOdds.Add(odds.ToString());
+                        }
+                        if (BestAwaySite.odds.h2h[0] > 0)
+                        {
+                            match.bestAwayOdds = $"+{BestAwaySite.odds.h2h[0]}";
+                            match.BestAwaySite = BestAwaySite.site_nice;
+                            //match.Add($"+{odds}");
+                        }
+                        else
+                        {
+                            match.bestAwayOdds = BestAwaySite.odds.h2h[0].ToString();
+                            match.BestAwaySite = BestAwaySite.site_nice;
+                            // arrayOfOdds.Add(odds.ToString());
+                        }
+                    }
+                }
                 allMatches = temp_result;
                 filteredMatches = allMatches;
                 tempMatches.Clear();
@@ -374,6 +429,103 @@ namespace BestBet.ViewModels
                 return false;
             }
         }
+
+        private void assignMatchTime(Match match)
+        {
+            match.MatchTime = "Loading...";
+            if ((DateTimeOffset.UtcNow.ToUnixTimeSeconds() - match.commence_time) < 0)
+            {
+                match.MatchTime = DateTimeOffset.FromUnixTimeSeconds(match.commence_time).ToLocalTime().ToString("M/d h:mm tt");
+                match.IsLive = Color.Transparent;
+                match.isNotLive = true;
+                match.isMatchLive = false;
+                //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IsLive"));
+                match.MatchTimeColor = Color.Black;
+            }
+            else
+            {
+                match.MatchTime = "LIVE";
+                match.IsLive = Color.Red;
+                match.isNotLive = false;
+                match.isMatchLive = true;
+                // PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IsLive"));
+                match.MatchTimeColor = Color.White;
+            }
+        }
+
+        private Site assignBestAwayBet(List<Site> sites, int index)
+        {
+            var tempBestOdds = -1000000;
+            List<string> arrayOfOdds = new List<string>();
+            Site bestSite = new Site();
+
+            foreach (var site in sites)
+            {
+                if(site.odds.h2h == null)
+                {
+                    //do nothing
+                } else
+                {
+                    var odds = getAmerican(site.odds.h2h[index]);
+                    site.odds.IsBestH2HAwayBet = false;
+                    if (tempBestOdds < odds)
+                    {
+                        tempBestOdds = odds;
+                        bestSite = site;
+                    }
+                }
+                
+            }
+            bestSite.odds.IsBestH2HAwayBet = true;
+            return bestSite;
+        }
+
+        private Site assignBestHomeBet(List<Site> sites, int index)
+        {
+            var tempBestOdds = -1000000;
+            List<string> arrayOfOdds = new List<string>();
+            Site bestSite = new Site();
+
+            foreach (var site in sites)
+            {
+                if (site.odds.h2h == null)
+                {
+                    //do nothing
+                }
+                else
+                {
+                    var odds = getAmerican(site.odds.h2h[index]);
+                    site.odds.IsBestH2HHomeBet = false;
+                    if (tempBestOdds < odds)
+                    {
+                        tempBestOdds = odds;
+                        bestSite = site;
+                    }
+                }
+            }
+            bestSite.odds.IsBestH2HHomeBet = true;
+            return bestSite;
+        }
+
+        public int getAmerican(double decimalOdds)
+        {
+            int americanOdds;
+            if (decimalOdds == 1)
+            {
+                return (int)(-100 / (.01));
+            }
+            if (decimalOdds >= 2.00)
+            {
+                americanOdds = (int)((decimalOdds - 1) * 100);
+            }
+            else
+            {
+                americanOdds = (int)(-100 / (decimalOdds - 1));
+            }
+
+            return americanOdds;
+        }
+
 
         public ICommand TapCommand { get; private set; }
 

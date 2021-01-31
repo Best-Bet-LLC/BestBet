@@ -89,7 +89,7 @@ namespace BestBet.Services
 
         public async Task<ObservableCollection<Match>> getUpcomingMatches(string title, string region)
         {
-            string url = $"https://api.the-odds-api.com/v3/odds/?sport={title}&region={region}&mkt=h2h&apiKey={API_KEY}";
+            string url = $"https://8k4l5ct991.execute-api.us-east-1.amazonaws.com/dev/odds/upcoming";
 
             HttpClient client = new HttpClient();
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using Amazon;
 using BestBet.Data;
 using BestBet.Services;
 using BestBet.Views;
@@ -53,6 +54,19 @@ namespace BestBet
             
             //FlowListView.Init();
             DependencyService.Register<OddsAPIInterface, OddsAPI>();
+            AWSConfigs.AWSRegion = "us-east-1";
+            //// Initialize the Amazon Cognito credentials provider
+            //CognitoAWSCredentials credentials = new CognitoAWSCredentials(
+            //    "us-east-1:055d7332-9e1c-405b-8579-c82e13576ad6", // Identity pool ID
+            //    AWSConfigs.AWSRegion // Region
+            //);
+
+            //// Example for |MA|
+            //analyticsManager = MobileAnalyticsManager.GetOrCreateInstance(
+            //  credentials,
+            //  AWSConfigs.AWSRegion, // Region
+            //  APP_ID // app id
+            //);
             MainPage = new NavigationPage(new SplashScreen());
            
         }

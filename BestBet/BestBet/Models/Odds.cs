@@ -7,11 +7,26 @@ using Xamarin.Essentials;
 
 namespace BestBet.Models
 {
+    public class Totals
+    {
+        public IList<object> points { get; set; }
+        public IList<double> odds { get; set; }
+        public IList<string> position { get; set; }
+    }
+
+    public class Spreads
+    {
+        public IList<double> odds { get; set; }
+        public IList<string> points { get; set; }
+    }
+
     public class Odds 
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public IList<double> h2h { get; set; }
         public IList<double> h2h_lay { get; set; }
+        public Totals totals { get; set; }
+        public Spreads spreads { get; set; }
         private bool isBestH2HHomeBet { get; set; }
         private bool isBestH2HAwayBet { get; set; }
 
@@ -222,6 +237,7 @@ namespace BestBet.Models
                     case "LowVig.ag": return "LowVig.png";
                     case "MyBookie.ag": return "MyBookie.png";
                     case "SugarHouse": return "SugarHouse.png";
+                    case "BetOnline.ag": return "BetOnline.png";
                     default: return $"{site_nice}.png";
                 }
             }
@@ -244,6 +260,7 @@ namespace BestBet.Models
                     case "LowVig.ag": return "LowVig.png";
                     case "MyBookie.ag": return "MyBookie.png";
                     case "Sugarhouse": return "SugarHouse.png";
+                    case "BetOnline.ag": return "BetOnline.png";
                     default: return $"{site_nice}.png";
                 }
             }
@@ -264,6 +281,7 @@ namespace BestBet.Models
         public string sport_nice { get; set; }
         public IList<string> teams { get; set; }
         public int commence_time { get; set; }
+        public string id { get; set; }
         public string home_team { get; set; }
         public List<Site> sites { get; set; }
         public int sites_count { get; set; }
@@ -328,9 +346,6 @@ namespace BestBet.Models
         {
             get
             {
-                var test = homeTeamOdds;
-                var test2 = awayTeamOdds;
-               
                 if (home_team == teams[0])
                     return teams[1];
                 else
@@ -338,241 +353,7 @@ namespace BestBet.Models
             }
         }
 
-        public List<string> homeTeamOdds
-        {
-            get
-            {
-                List<string> arrayOfOdds = new List<string>();
-                var tempBestOdds = -100000;
-                Site bestSite = new Site();
-                
-                if (home_team == teams[0])
-                {
-                    foreach (var site in sites)
-                    {
-                        var odds = getAmerican(site.odds.h2h[0]);
-                        site.odds.IsBestH2HHomeBet = false;
-                        if (tempBestOdds < odds)
-                        {
-                            tempBestOdds = odds;
-                            bestSite = site;
-                            
-                            
-                            if (odds > 0)
-                            {
-                                bestHomeOdds = $"+{odds}";
-                                bestHomeSite = site.site_nice;
-                                arrayOfOdds.Add($"+{odds}");
-                            }
-                            else
-                            {
-                                bestHomeSite = site.site_nice;
-                                bestHomeOdds = odds.ToString();
-                                arrayOfOdds.Add(odds.ToString());
-                            }
-                        }
-                    }
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("BestHomeSite"));
-                   
-                    //switch (bestHomeSite)
-                    //{
-                    //    case "PointsBet (US)": awaySiteImage = "PointsBet.png"; break;
-                    //    case "William Hill (US)": awaySiteImage = "WilliamHill.png"; break;
-                    //    default: homeSiteImage = $"{bestHomeSite}.png"; break;
-                    //}
-                    
-                }
-                else
-                {
-                    foreach (var site in sites)
-                    {
-                        var odds = getAmerican(site.odds.h2h[1]);
-                        site.odds.IsBestH2HHomeBet = false;
-                        if (tempBestOdds < odds)
-                        {
-                            tempBestOdds = odds;
-                            bestSite = site;
-                           
-                            
-                            if (odds > 0)
-                            {
-                                bestHomeSite = site.site_nice;
-                                bestHomeOdds = $"+{odds}";
-                                arrayOfOdds.Add($"+{odds}");
-                            }
-                            else
-                            {
-                                bestHomeSite = site.site_nice;
-                                bestHomeOdds = odds.ToString();
-                                arrayOfOdds.Add(odds.ToString());
-                            }
-                        }
-                    }
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("BestHomeSite"));
-                    //switch (bestHomeSite)
-                    //{
-                    //    case "PointsBet (US)": awaySiteImage = "PointsBet.png"; break;
-                    //    case "William Hill (US)": awaySiteImage = "WilliamHill.png"; break;
-                    //    default: homeSiteImage = $"{bestHomeSite}.png"; break;
-                    //}
-                    
-                }
-                bestSite.odds.IsBestH2HHomeBet = true;
-                return arrayOfOdds;
-            }
-        }
-
        
-
-        public List<string> awayTeamOdds
-        {
-            get
-            {
-                var tempBestOdds= -100000;
-                List<string> arrayOfOdds = new List<string>();
-                Site bestSite = new Site();
-                
-                if (home_team == teams[0])
-                {
-                    foreach (var site in sites)
-                    {
-                        site.odds.IsBestH2HAwayBet = false;
-                        var odds = getAmerican(site.odds.h2h[1]);
-                        if (tempBestOdds < odds)
-                        {
-                            tempBestOdds = odds;
-                            
-                            bestSite = site;
-                            
-
-                            if (odds > 0)
-                            {
-                                bestAwaySite = site.site_nice;
-                                bestAwayOdds = $"+{odds}";
-                                arrayOfOdds.Add($"+{odds}");
-                            }
-                            else
-                            {
-                                bestAwaySite = site.site_nice;
-                                bestAwayOdds = odds.ToString();
-                                arrayOfOdds.Add(odds.ToString());
-                            }
-                        }
-                    }
-                    //switch (bestAwaySite)
-                    //{
-                    //    case "PointsBet (US)": awaySiteImage = "PointsBet.png"; break;
-                    //    case "William Hill (US)": awaySiteImage = "WilliamHill.png"; break;
-                    //    default: awaySiteImage = $"{bestAwaySite}.png"; break;
-                    //}
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("BestAwaySite"));
-                    
-                }
-                else
-                {
-                    foreach (var site in sites)
-                    {
-                        var odds = getAmerican(site.odds.h2h[0]);
-                        site.odds.IsBestH2HAwayBet = false;
-                        if (tempBestOdds < odds)
-                        {
-                            tempBestOdds = odds;
-                            
-                            bestSite = site;
-
-                            
-                            if (odds > 0)
-                            {
-                                bestAwaySite = site.site_nice;
-                                bestAwayOdds = $"+{odds}";
-                                arrayOfOdds.Add($"+{odds}");
-                            }
-                            else
-                            {
-                                bestAwaySite = site.site_nice;
-                                bestAwayOdds = odds.ToString();
-                                arrayOfOdds.Add(odds.ToString());
-                            }
-                        }
-                    }
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("BestAwaySite"));
-                    //switch (bestAwaySite)
-                    //{
-                    //    case "PointsBet (US)": awaySiteImage = "PointsBet.png"; break;
-                    //    case "William Hill (US)": awaySiteImage = "WilliamHill.png"; break;
-                    //    default: awaySiteImage = $"{bestAwaySite}.png"; break;
-                    //}
-                    
-                }
-                bestSite.odds.IsBestH2HAwayBet = true;
-                return arrayOfOdds;
-            }
-        }
-
-        public int getAmerican(double decimalOdds)
-        {
-            int americanOdds;
-            if (decimalOdds == 1)
-            {
-                return (int)(-100 / (.01));
-            }
-            if (decimalOdds >= 2.00)
-            {
-                americanOdds = (int)((decimalOdds - 1) * 100);
-            }
-            else
-            {
-                americanOdds = (int)(-100 / (decimalOdds - 1));
-            }
-
-            return americanOdds;
-        }
-
-        public string awaySiteImage
-        {
-            get
-            {
-                switch (BestAwaySite)
-                {
-                    case "PointsBet (US)": return "PointsBet.png";
-                    case "William Hill (US)": return "WilliamHill.jpg";
-                    case "LowVig.ag": return "LowVig.png";
-                    case "MyBookie.ag": return "MyBookie.png";
-                    default: return $"{BestAwaySite}.png";
-                }
-
-            }
-
-            set
-            {
-                awaySiteImage = value;
-            }
-           
-        }
-
-       
-
-        public string homeSiteImage
-        {
-            get
-            {
-                switch (BestHomeSite)
-                {
-                    case "PointsBet (US)": return "PointsBet.png";
-                    case "William Hill (US)": return "WilliamHill.jpg";
-                    case "LowVig.ag": return "LowVig.png";
-                    case "MyBookie.ag": return "MyBookie.png";
-                    default: return $"{BestHomeSite}.png";
-                }
-            }
-
-            set
-            {
-                awaySiteImage = value;
-            }
-
-        }
-
         private Color isLive { get; set; }
 
         public Color IsLive
@@ -587,7 +368,7 @@ namespace BestBet.Models
                 {
                     isLive = value;
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IsLive"));
-                    
+
                 }
                 catch (Exception ex)
                 {
@@ -621,38 +402,30 @@ namespace BestBet.Models
             }
         }
 
-        public string matchTime
+        private string matchTime { get; set; }
+
+        public string MatchTime
         {
-            get {
-                string matchTimeString = "Loading...";
-                if ((DateTimeOffset.UtcNow.ToUnixTimeSeconds() - commence_time) < 0)
-                    {
-                    matchTimeString = DateTimeOffset.FromUnixTimeSeconds(commence_time).ToLocalTime().ToString("M/d h:mm tt");
-                    IsLive = Color.Transparent;
-                    isNotLive = true;
-                    isMatchLive = false;
-                    //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IsLive"));
-                    matchTimeColor = Color.Black;
-                }
-                    else
-                    {
-                        matchTimeString = "LIVE";
-                        IsLive = Color.Red;
-                        isNotLive = false;
-                        isMatchLive = true;
-                       // PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IsLive"));
-                        matchTimeColor = Color.White;
-                    }
-                return matchTimeString;
+            get
+            {
+                return matchTime;
             }
-             
+            set
+            {
+                if (value != null)
+                {
+                    matchTime = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MatchTime"));
+                }
+            }
+
         }
 
     }
 
     public class ListOfOdds
     {
-        public bool success { get; set; }
+        //public bool success { get; set; }
         public ObservableCollection<Match> data { get; set; }
 
        
