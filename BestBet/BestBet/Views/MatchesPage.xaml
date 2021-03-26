@@ -54,7 +54,7 @@
                 </sho:DraggableViewCell>
             </DataTemplate>
 
-            <DataTemplate x:Key="HorizontalDudeTemplate">
+            <DataTemplate x:Key="OverUnderTemplate">
                 <sho:DraggableViewCell x:Name="DraggableViewCell">
                     <ContentView
                         xamEffects:Commands.Tap="{Binding TapCommand}"
@@ -63,19 +63,19 @@
                         BackgroundColor="Yellow"
                         IsClippedToBounds="True">
                         
-                            <views:BetsGridCell
+                            <views:BetsGridCellOverUnder
                                 Margin="0"
                                 BackgroundColor="Brown"
                                 CornerRadius="0">
-                                <views:BetsGridCell.Triggers>
+                                <views:BetsGridCellOverUnder.Triggers>
                                     <DataTrigger
                                         Binding="{Binding Source={x:Reference DraggableViewCell}, Path=IsDragAndDropping}"
-                                        TargetType="views:BetsGridCell"
+                                        TargetType="views:BetsGridCellOverUnder"
                                         Value="True">
-                                        <Setter Property="BackgroundColor" Value="Orange" />
+                                        <Setter Property="BackgroundColor" Value="{StaticResource Background_Gray}" />
                                     </DataTrigger>
-                                </views:BetsGridCell.Triggers>
-                            </views:BetsGridCell>
+                                </views:BetsGridCellOverUnder.Triggers>
+                            </views:BetsGridCellOverUnder>
                         
                     </ContentView>
                 </sho:DraggableViewCell>
@@ -106,7 +106,7 @@
             <views:DudeTemplateSelector
                 x:Key="DudeTemplateSelector"
                 GridTemplate="{StaticResource HorizontalDudeTemplateMatches}"
-                HorizontalTemplate="{StaticResource HorizontalDudeTemplate}"
+                HorizontalTemplate="{StaticResource OverUnderTemplate}"
                 VerticalTemplate="{StaticResource VerticalDudeTemplate}" />
 
               
@@ -172,10 +172,13 @@
                                         Shades="{StaticResource DarkNeumorphism}">
                                     <Frame Padding="5" Margin="5" Background="White" CornerRadius="5" >
                                     <Frame.Content>
+                                        <ScrollView>
                                 
                                 <Grid Margin="0" Padding="0"  BackgroundColor="White">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="40"/>
+                                        <RowDefinition Height=".2*" />
+                                        <RowDefinition Height="*" />
                                         <RowDefinition Height=".2*" />
                                         <RowDefinition Height="*" />
                                         <RowDefinition Height=".2*" />
@@ -185,15 +188,16 @@
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
                                     <Image Source="livegame_icon.jpg" IsVisible="{Binding SelectedMatch.isMatchLive}" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Start"/>
-                                    <Label Text="{Binding SelectedMatch.matchTime}" Margin="0,0,0,0" FontFamily="Bebas Neue" FontSize="20" TextColor="{Binding IsLive}" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" MaxLines="1"/>
+                                    <Label Text="{Binding SelectedMatch.MatchTime}" Margin="0,0,0,0" FontFamily="Bebas Neue" FontSize="20" TextColor="{Binding IsLive}" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" MaxLines="1"/>
                                     <Label Text="{Binding SelectedMatch.awayTeam}" Margin="5" FontFamily="Bebas Neue" FontSize="30" TextColor="{StaticResource Accent}" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" MaxLines="1"/>
                                                       
                                    <Label Text="{Binding SelectedMatch.home_team}" Margin="5" FontFamily="Bebas Neue" FontSize="30" TextColor="{StaticResource Accent}" Grid.Row="3" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" MaxLines="1"/>
+                                    <Label Text="Over / Under" Margin="5" FontFamily="Bebas Neue" FontSize="30" TextColor="{StaticResource Accent}" Grid.Row="5" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" MaxLines="1"/>
 
                                       <sho:HorizontalListView
                                         x:Name="HorizontalListViewBets"
-                                        CollectionPadding="5,0,5,0"
-                                        Margin="0"
+                                        CollectionPadding="5"
+                                        Margin="5"
                                         CurrentIndex="{Binding CurrentIndex}"
                                         EnableDragAndDrop="False"
                                         ItemsSource="{Binding Sites}"
@@ -206,8 +210,8 @@
 
                                      <sho:HorizontalListView
                                         x:Name="HorizontalListViewBetsHome"
-                                        CollectionPadding="0,0,0,0"
-                                        Margin="0"
+                                        CollectionPadding="5"
+                                        Margin="5"
                                         CurrentIndex="{Binding CurrentIndex}"
                                         EnableDragAndDrop="False"
                                         ItemsSource="{Binding Sites}"
@@ -219,9 +223,26 @@
                                         ColumnCount="3"
                                         Grid.Row="4"
                                         Grid.Column="0"/>
+
+                                    <sho:HorizontalListView
+                                        x:Name="HorizontalListViewBetsOverUnder"
+                                        CollectionPadding="5"
+                                        Margin="5"
+                                        CurrentIndex="{Binding CurrentIndex}"
+                                        EnableDragAndDrop="False"
+                                        ItemsSource="{Binding Sites}"
+                                        ItemTemplate="{StaticResource OverUnderTemplate}"
+                                        BackgroundColor="White"
+                                        ItemHeight="100"
+                                        ListLayout="Grid"
+                                        SnapStyle="Center"
+                                        ColumnCount="3"
+                                        Grid.Row="6"
+                                        Grid.Column="0"/>
                                     
 
                                     </Grid>
+                                            </ScrollView>
                                    </Frame.Content>
                                   </Frame>
                                  </sho:Shadows>

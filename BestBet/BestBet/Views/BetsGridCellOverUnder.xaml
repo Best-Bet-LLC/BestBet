@@ -2,7 +2,7 @@
 <Frame
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="BestBet.Views.BetsGridCell"
+    x:Class="BestBet.Views.BetsGridCellOverUnder"
     xmlns:viewModels="clr-namespace:BestBet.ViewModels"
     Margin="2.5"
     Padding="0"
@@ -19,7 +19,7 @@
                 <Grid BackgroundColor="White" Margin="0,0,0,0" HorizontalOptions="Fill" VerticalOptions="Fill"  MinimumHeightRequest="75" HeightRequest="75">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
-                        <!--<RowDefinition Height=".4*" />-->
+                        <RowDefinition Height=".5*" />
                         <RowDefinition Height=".5*" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
@@ -27,15 +27,18 @@
                         <ColumnDefinition Width="*" />
                         <!--<ColumnDefinition Width="*" />-->
                     </Grid.ColumnDefinitions>
-                    <BoxView BackgroundColor="{Binding odds.awayH2HBackground}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"/>
+                    <BoxView BackgroundColor="{Binding odds.Totals.overBackground}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"/>
                     <Image Source="{Binding awaySiteImage}" Margin="2.5, 0, 2.5, 0" Grid.Row="0" Grid.Column="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
                     <!--<Forms9Patch:Label Text="{Binding site_nice}" Margin="5, 0, 5, 0" Grid.Row="1" Grid.Column="0" FontFamily="Bebas Neue" TextColor="#DFAD41" FontSize="18" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>-->
-                    <Forms9Patch:Label Text="{Binding odds.h2h_away}" Margin="2.5, 0, 2.5, 0" Grid.Row="1" Grid.Column="0" FontFamily="Bebas Neue" TextColor="{Binding odds.awayH2HTextColor}" FontSize="18" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+                    <Forms9Patch:Label Text="{Binding odds.Totals.Over}" Margin="2.5, 0, 2.5, 0" Grid.Row="1" Grid.Column="0" FontFamily="Bebas Neue" TextColor="{Binding odds.Totals.overTextColor}" FontSize="18" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+                    <Forms9Patch:Label Text="{Binding odds.Totals.OverOdds}" Margin="2.5, 0, 2.5, 0" Grid.Row="2" Grid.Column="0" FontFamily="Bebas Neue" TextColor="{Binding odds.Totals.overTextColor}" FontSize="18" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+                    
 
-                    <BoxView BackgroundColor="{Binding odds.awayH2HBackground}" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"/>
+                    <BoxView BackgroundColor="{Binding odds.Totals.underBackground}" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"/>
                     <Image Source="{Binding awaySiteImage}" Margin="2.5, 0, 2.5, 0" Grid.Row="0" Grid.Column="1" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
                     <!--<Forms9Patch:Label Text="{Binding site_nice}" Margin="5, 0, 5, 0" Grid.Row="1" Grid.Column="1" FontFamily="Bebas Neue" TextColor="#DFAD41" FontSize="18" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>-->
-                    <Forms9Patch:Label Text="{Binding odds.h2h_away}" Margin="2.5, 0, 2.5, 0" Grid.Row="1" Grid.Column="1" FontFamily="Bebas Neue" TextColor="{Binding odds.awayH2HTextColor}" FontSize="18" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+                    <Forms9Patch:Label Text="{Binding odds.Totals.Under}" Margin="2.5, 0, 2.5, 0" Grid.Row="1" Grid.Column="1" FontFamily="Bebas Neue" TextColor="{Binding odds.Totals.underTextColor}" FontSize="18" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+                    <Forms9Patch:Label Text="{Binding odds.Totals.UnderOdds}" Margin="2.5, 0, 2.5, 0" Grid.Row="2" Grid.Column="1" FontFamily="Bebas Neue" TextColor="{Binding odds.Totals.underTextColor}" FontSize="18" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
 
                     <!--<BoxView BackgroundColor="{Binding odds.awayH2HBackground}" Grid.Row="0" Grid.Column="2" Grid.RowSpan="2"/>
                     <Image Source="{Binding awaySiteImage}" Margin="2.5, 0, 2.5, 0" Grid.Row="0" Grid.Column="2" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />

@@ -9,13 +9,277 @@ namespace BestBet.Models
 {
     public class Totals
     {
-        public IList<object> points { get; set; }
+        public event PropertyChangedEventHandler PropertyChanged;
+        public IList<double> points { get; set; }
         public IList<double> odds { get; set; }
         public IList<string> position { get; set; }
+        private bool isBestOverBet { get; set; }
+        private bool isBestUnderBet { get; set; }
+
+
+        public bool IsBestOverBet
+        {
+            get
+            {
+                return isBestOverBet;
+            }
+            set
+            {
+                try
+                {
+
+                    if (value)
+                    {
+                        overBackground = ColorConverters.FromHex("#dfad41");
+                        overTextColor = Color.White;
+                    }
+                    else
+                    {
+                        overBackground = Color.Transparent;
+                        overTextColor = ColorConverters.FromHex("#dfad41");
+                    }
+                    isBestOverBet = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IsBestOverBet"));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("overBackground"));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("overTextColor"));
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"crash: {ex.Message}");
+                }
+            }
+        }
+        public Color overBackground { get; set; }
+        public Color overTextColor { get; set; }
+
+        public bool IsBestUnderBet
+        {
+            get
+            {
+                return isBestUnderBet;
+            }
+            set
+            {
+                try
+                {
+
+                    if (value)
+                    {
+                        underBackground = ColorConverters.FromHex("#dfad41");
+                        underTextColor = Color.White;
+                    }
+                    else
+                    {
+                        underBackground = Color.Transparent;
+                        underTextColor = ColorConverters.FromHex("#dfad41");
+                    }
+                    isBestUnderBet = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IsBestUnderBet"));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("underBackground"));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("underTextColor"));
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"crash: {ex.Message}");
+                }
+            }
+        }
+        public Color underBackground { get; set; }
+        public Color underTextColor { get; set; }
+
+        private string overOdds;
+        public string OverOdds
+        {
+            get
+            {
+                var overIndex = 0;
+                if(position[0] == "over")
+                {
+                    overIndex = 0;
+                } else
+                {
+                    overIndex = 1;
+                }
+                var americanOdds = getAmerican(odds[overIndex]);
+                if (americanOdds > 0)
+                {
+                    return $"+{americanOdds}";
+                }
+                else
+                {
+                    return americanOdds.ToString();
+                }
+
+            }
+            set
+            {
+                try
+                {
+
+                    overOdds = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("OverOdds"));
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"crash: {ex.Message}");
+                }
+            }
+
+        }
+
+        private string over;
+        public string Over
+        {
+            get
+            {
+                var overIndex = 0;
+                if (position[0] == "over")
+                {
+                    overIndex = 0;
+                }
+                else
+                {
+                    overIndex = 1;
+                }
+                var americanOdds = getAmerican(points[overIndex]);
+                if (americanOdds > 0)
+                {
+                    return $"+{americanOdds}";
+                }
+                else
+                {
+                    return americanOdds.ToString();
+                }
+
+            }
+            set
+            {
+                try
+                {
+
+                    over = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Over"));
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"crash: {ex.Message}");
+                }
+            }
+
+        }
+
+        private string under;
+
+        public string Under
+        {
+            get
+            {
+                var underIndex = 0;
+                if (position[0] == "under")
+                {
+                    underIndex = 0;
+                }
+                else
+                {
+                    underIndex = 1;
+                }
+                var americanOdds = getAmerican(points[underIndex]);
+                if (americanOdds > 0)
+                {
+                    return $"+{americanOdds}";
+                }
+                else
+                {
+                    return americanOdds.ToString();
+                }
+
+            }
+            set
+            {
+                try
+                {
+
+                    under = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Under"));
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"crash: {ex.Message}");
+                }
+            }
+
+        }
+
+        private string underOdds;
+        public string UnderOdds
+        {
+            get
+            {
+                var underIndex = 0;
+                if (position[0] == "under")
+                {
+                    underIndex = 0;
+                }
+                else
+                {
+                    underIndex = 1;
+                }
+                var americanOdds = getAmerican(odds[underIndex]);
+                if (americanOdds > 0)
+                {
+                    return $"+{americanOdds}";
+                }
+                else
+                {
+                    return americanOdds.ToString();
+                }
+
+            }
+            set
+            {
+                try
+                {
+
+                    underOdds = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("UnderOdds"));
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"crash: {ex.Message}");
+                }
+            }
+
+        }
+
+        public int getAmerican(double decimalOdds)
+        {
+            int americanOdds;
+            if (decimalOdds == 1)
+            {
+                return (int)(-100 / (.01));
+            }
+            if (decimalOdds >= 2.00)
+            {
+                americanOdds = (int)((decimalOdds - 1) * 100);
+            }
+            else
+            {
+                americanOdds = (int)(-100 / (decimalOdds - 1));
+            }
+
+            return americanOdds;
+        }
     }
 
     public class Spreads
     {
+        public event PropertyChangedEventHandler PropertyChanged;
         public IList<double> odds { get; set; }
         public IList<string> points { get; set; }
     }
@@ -143,14 +407,21 @@ namespace BestBet.Models
         {
             get
             {
-                var odds = getAmerican(h2h[1]);
-                if (odds > 0)
+                if (h2h == null)
                 {
-                    return $"+{odds}";
+                    return "N/A";
                 }
                 else
                 {
-                    return odds.ToString();
+                    var odds = getAmerican(h2h[1]);
+                    if (odds > 0)
+                    {
+                        return $"+{odds}";
+                    }
+                    else
+                    {
+                        return odds.ToString();
+                    }
                 }
 
             }
@@ -169,19 +440,27 @@ namespace BestBet.Models
                 }
             }
         }
-        public string h2h_home
+        private string h2h_home;
+        public string H2H_home
         {
             get
             {
-                var odds = getAmerican(h2h[0]);
-                if (odds > 0)
+                if (h2h == null)
                 {
-                    return $"+{odds}";
-                }
-                else
+                    return "N/A";
+                } else
                 {
-                    return odds.ToString();
+                    var odds = getAmerican(h2h[0]);
+                    if (odds > 0)
+                    {
+                        return $"+{odds}";
+                    }
+                    else
+                    {
+                        return odds.ToString();
+                    }
                 }
+                
             }
             set
             {
@@ -189,7 +468,7 @@ namespace BestBet.Models
                 {
                     
                         h2h_home = value;
-                        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("h2h_home"));
+                        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("H2H_home"));
                     
                 }
                 catch (Exception ex)
@@ -289,6 +568,8 @@ namespace BestBet.Models
         public string bestAwayOdds { get; set; }
         private string bestHomeSite { get; set; }
         private string bestAwaySite { get; set; }
+        private string bestOverSite { get; set; }
+        private string bestUnderSite { get; set; }
         public bool isHot { get; set; }
         public bool isNotHot { get; set; }
         public bool isMatchLive { get; set; }
@@ -341,6 +622,51 @@ namespace BestBet.Models
             }
         }
 
+        public string BestOverSite
+        {
+            get
+            {
+                return bestOverSite;
+            }
+            set
+            {
+                try
+                {
+                    if (value != null)
+                    {
+                        bestOverSite = value;
+                        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("BestOverSite"));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"crash: {ex.Message}");
+                }
+            }
+        }
+
+        public string BestUnderSite
+        {
+            get
+            {
+                return bestUnderSite;
+            }
+            set
+            {
+                try
+                {
+                    if (value != null)
+                    {
+                        bestUnderSite = value;
+                        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("BestUnderSite"));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"crash: {ex.Message}");
+                }
+            }
+        }
 
         public string awayTeam
         {

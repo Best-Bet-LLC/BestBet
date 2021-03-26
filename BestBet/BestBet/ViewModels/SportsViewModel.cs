@@ -333,72 +333,32 @@ namespace BestBet.ViewModels
                     //}
                 }
                 //loop through and assign best site here
-                
-                
+
+
                 foreach (Match match in temp_result)
                 {
+                    if(match.sites_count == 0)
+                    {
+                        break;
+                    }
                     assignMatchTime(match);
-                    
+                    var homeIndex = 0;
+                    var awayIndex = 1;
                     if (match.home_team == match.teams[0])
                     {
-                        var BestHomeSite = assignBestHomeBet(match.sites, 0);
-                        var BestAwaySite = assignBestAwayBet(match.sites, 1);
-
-                        if (BestHomeSite.odds.h2h[0] > 0)
-                        {
-                            match.bestHomeOdds = $"+{BestHomeSite.odds.h2h[0]}";
-                            match.BestHomeSite = BestHomeSite.site_nice;
-                            //match.Add($"+{odds}");
-                        }
-                        else
-                        {
-                            match.bestHomeOdds = BestHomeSite.odds.h2h[0].ToString();
-                            match.BestHomeSite = BestHomeSite.site_nice;
-                            // arrayOfOdds.Add(odds.ToString());
-                        }
-                        if (BestAwaySite.odds.h2h[0] > 0)
-                        {
-                            match.bestAwayOdds = $"+{BestAwaySite.odds.h2h[1]}";
-                            match.BestAwaySite = BestAwaySite.site_nice;
-                            //match.Add($"+{odds}");
-                        }
-                        else
-                        {
-                            match.bestAwayOdds = BestAwaySite.odds.h2h[1].ToString();
-                            match.BestAwaySite = BestAwaySite.site_nice;
-                            // arrayOfOdds.Add(odds.ToString());
-                        }
-                    } else
-                    {
-                        var BestHomeSite = assignBestHomeBet(match.sites, 1);
-                        var BestAwaySite = assignBestAwayBet(match.sites, 0);
-
-                        if (BestHomeSite.odds.h2h[1] > 0)
-                        {
-                            match.bestHomeOdds = $"+{BestHomeSite.odds.h2h[1]}";
-                            match.BestHomeSite = BestHomeSite.site_nice;
-                            //match.Add($"+{odds}");
-                        }
-                        else
-                        {
-                            match.bestHomeOdds = BestHomeSite.odds.h2h[1].ToString();
-                            match.BestHomeSite = BestHomeSite.site_nice;
-                            // arrayOfOdds.Add(odds.ToString());
-                        }
-                        if (BestAwaySite.odds.h2h[0] > 0)
-                        {
-                            match.bestAwayOdds = $"+{BestAwaySite.odds.h2h[0]}";
-                            match.BestAwaySite = BestAwaySite.site_nice;
-                            //match.Add($"+{odds}");
-                        }
-                        else
-                        {
-                            match.bestAwayOdds = BestAwaySite.odds.h2h[0].ToString();
-                            match.BestAwaySite = BestAwaySite.site_nice;
-                            // arrayOfOdds.Add(odds.ToString());
-                        }
+                        homeIndex = 0;
+                        awayIndex = 1;
                     }
+                    else
+                    {
+                        homeIndex = 1;
+                        awayIndex = 0;
+                    }
+                    assignBestH2HBet(match, homeIndex, awayIndex);
+                    assignBestSpeadsBet(match, homeIndex, awayIndex);
+                    assignBestPointsBet(match);
                 }
+                        
                 allMatches = temp_result;
                 filteredMatches = allMatches;
                 tempMatches.Clear();
@@ -430,7 +390,112 @@ namespace BestBet.ViewModels
             }
         }
 
-        private void assignMatchTime(Match match)
+        private void assignBestPointsBet(Match match)
+        {
+            Console.WriteLine($"Assigning best points bet for {match.awayTeam} @ {match.home_team}");
+            var tempBestOverOdds = -1000000;
+            var tempBestUnderOdds = -1000000;
+            Site bestOverSite = new Site();
+            Site bestUnderSite = new Site();
+
+            foreach (var site in match.sites)
+            {
+                //var overIndex = 0;
+                //var underIndex = 1;
+                //if(site.odds.totals.position[0]== "over"){
+                //    overIndex = 0;
+                //    underIndex = 1;
+                //} else
+                //{
+                //    overIndex = 1;
+                //    underIndex = 0;
+                //}
+                if (site.odds.totals == null)
+                {
+                    //do nothing
+                }
+                else
+                {
+                    var overOdds = int.Parse(site.odds.totals.UnderOdds);
+                    var underOdds = int.Parse(site.odds.totals.OverOdds);
+                    site.odds.totals.IsBestOverBet = false;
+                    site.odds.totals.IsBestUnderBet = false;
+                    if (tempBestOverOdds < overOdds)
+                    {
+                        tempBestOverOdds = overOdds;
+                        bestOverSite = site;
+                    }
+
+                    if (tempBestUnderOdds < underOdds)
+                    {
+                        tempBestUnderOdds = underOdds;
+                        bestUnderSite = site;
+                    }
+                }
+
+            }
+            bestOverSite.odds.totals.IsBestOverBet = true;
+            bestUnderSite.odds.totals.IsBestUnderBet = true;
+            
+
+            //var BestOverSite = assignBestOverBet(match.sites, overIndex);
+            //var BestUnderSite = assignBestUnderBet(match.sites, underIndex);
+            //var overOdds = BestOverSite.odds.Totals.odds[homeIndex];
+            //var underOdds = BestUnderSite.odds.h2h[awayIndex];
+            //match.BestOverSite = BestOverSite.site_nice;
+            //match.BestUnderSite = BestUnderSite.site_nice;
+            //if (homeOdds > 0)
+            //{
+            //    match.bestHomeOdds = $"+{homeOdds}";
+            //}
+            //else
+            //{
+            //    match.bestHomeOdds = awayOdds.ToString();
+            //}
+            //if (underOdds > 0)
+            //{
+            //    match.bestAwayOdds = $"+{awayOdds}";
+            //}
+            //else
+            //{
+            //    match.bestAwayOdds = awayOdds.ToString();
+
+            //}
+        }
+
+        private void assignBestSpeadsBet(Match match, int homeIndex, int awayIndex)
+        {
+            Console.WriteLine("Need to implement best spreads bet");
+        }
+
+        private void assignBestH2HBet(Match match, int homeIndex, int awayIndex)
+    {
+            var BestHomeSite = assignBestHomeH2HBet(match.sites, homeIndex);
+            var BestAwaySite = assignBestAwayH2HBet(match.sites, awayIndex);
+            var homeOdds = BestHomeSite.odds.h2h[homeIndex];
+            var awayOdds = BestAwaySite.odds.h2h[awayIndex];
+            match.BestHomeSite = BestHomeSite.site_nice;
+            match.BestAwaySite = BestAwaySite.site_nice;
+            if (homeOdds > 0)
+            {
+                match.bestHomeOdds = $"+{homeOdds}";
+            }
+            else
+            {
+                match.bestHomeOdds = awayOdds.ToString();
+            }
+            if (awayOdds > 0)
+            {
+                match.bestAwayOdds = $"+{awayOdds}";
+            }
+            else
+            {
+                match.bestAwayOdds = awayOdds.ToString();
+                
+            }
+    }
+
+    private void assignMatchTime(Match match)
         {
             match.MatchTime = "Loading...";
             if ((DateTimeOffset.UtcNow.ToUnixTimeSeconds() - match.commence_time) < 0)
@@ -453,7 +518,7 @@ namespace BestBet.ViewModels
             }
         }
 
-        private Site assignBestAwayBet(List<Site> sites, int index)
+        private Site assignBestAwayH2HBet(List<Site> sites, int index)
         {
             var tempBestOdds = -1000000;
             List<string> arrayOfOdds = new List<string>();
@@ -480,7 +545,7 @@ namespace BestBet.ViewModels
             return bestSite;
         }
 
-        private Site assignBestHomeBet(List<Site> sites, int index)
+        private Site assignBestHomeH2HBet(List<Site> sites, int index)
         {
             var tempBestOdds = -1000000;
             List<string> arrayOfOdds = new List<string>();
