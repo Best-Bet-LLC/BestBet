@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -33,6 +33,13 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidLinkMode>None</AndroidLinkMode>
+    <AotAssemblies>false</AotAssemblies>
+    <EnableLLVM>false</EnableLLVM>
+    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
+    <BundleAssemblies>false</BundleAssemblies>
+    <MandroidI18n />
+    <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
+    <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -113,281 +120,419 @@
     <AndroidResource Include="Resources\values\colors.xml" />
     <AndroidResource Include="Resources\mipmap-anydpi-v26\icon.xml" />
     <AndroidResource Include="Resources\mipmap-anydpi-v26\icon_round.xml" />
-    <AndroidResource Include="Resources\drawable\nfl.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\nfl.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\PointsBet.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\PointsBet.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\Unibet.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\Unibet.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\DraftKings.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\DraftKings.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\BetOnline.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\BetOnline.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\Betfair.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\Betfair.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\BetRivers.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\BetRivers.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\FanDuel.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\FanDuel.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\Bovada.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\Bovada.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\MyBookie.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\MyBookie.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\LowVig.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\LowVig.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\WilliamHill.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\WilliamHill.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\Intertops.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\Intertops.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\GTbets.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\GTbets.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\Bookmaker.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\Bookmaker.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\WilliamHill.jpg">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\WilliamHill.jpg">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\filter.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\filter.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\home.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\home.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\basketball_ncaab.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\basketball_ncaab.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\americanfootball_nfl.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\americanfootball_nfl.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\baseball_mlb.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\baseball_mlb.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\icehockey_nhl.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\icehockey_nhl.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\basketball_nba.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\basketball_nba.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\wordmark.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\wordmark.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\typeface2.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\typeface2.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\logo2.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\logo2.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\cardlogo_transparent.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\cardlogo_transparent.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\avi.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\avi.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\logo_transparent.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\logo_transparent.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\americanfootball_ncaaf.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\americanfootball_ncaaf.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\mipmap-hdpi\ic_launcher.png">
-      <SubType></SubType>
-      <Generator></Generator>
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\mipmap-mdpi\ic_launcher.png">
-      <SubType></SubType>
-      <Generator></Generator>
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\mipmap-xhdpi\ic_launcher.png">
-      <SubType></SubType>
-      <Generator></Generator>
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\mipmap-xxhdpi\ic_launcher.png">
-      <SubType></SubType>
-      <Generator></Generator>
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher.png">
-      <SubType></SubType>
-      <Generator></Generator>
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\filter.svg">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\filter.svg">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\filter2.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\filter2.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\barcode.jpg">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\barcode.jpg">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\whatshot_icon.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\whatshot_icon.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\transparent.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\transparent.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\livegame_icon.jpg">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\livegame_icon.jpg">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\nav_arrow.jpg">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\nav_arrow.jpg">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\hamburger_menu.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\hamburger_menu.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\soccer_turkey_super_league.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\soccer_turkey_super_league.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\soccer_spain_segunda_division.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\soccer_spain_segunda_division.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\soccer_spain_la_liga.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\soccer_spain_la_liga.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\soccer_germany_bundesliga2.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\soccer_germany_bundesliga2.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\soccer_france_ligue_two.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\soccer_france_ligue_two.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\soccer_italy_serie_a.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\soccer_italy_serie_a.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\soccer_belgium_first_div.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\soccer_belgium_first_div.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\congratslogo.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\congratslogo.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\values\strings.xml">
-      <SubType></SubType>
-      <Generator></Generator>
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\wordmark_edited.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\wordmark_edited.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\aussierules_afl.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\aussierules_afl.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\basketball_euroleague.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\basketball_euroleague.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\cricket_big_bash.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\cricket_big_bash.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\basketball_euroleague.jpg">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\basketball_euroleague.jpg">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\splashscreen.xml">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\splashscreen.xml">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\logo.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\logo.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\splashlogo.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\splashlogo.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\bottommenu_main_chip.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\bottommenu_main_chip.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\bottommenu_settings_icon.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\bottommenu_settings_icon.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\bottommenu_profile_icon.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\bottommenu_profile_icon.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\bottommenu_watchlist_icon.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\bottommenu_watchlist_icon.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\bottommenu_live_icon.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\bottommenu_live_icon.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\bottommenu_background.jpg">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\bottommenu_background.jpg">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\BetMGM.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\BetMGM.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\SugarHouse.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\SugarHouse.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\Caesars.png">
-      <SubType></SubType>
-      <Generator></Generator>
+    <AndroidResource Include="Resources\drawable-nodpi\Caesars.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
@@ -405,5 +550,5 @@
     <AndroidAsset Include="Assets\301_search_location.json" />
     <AndroidAsset Include="Assets\splashscreen.json" />
   </ItemGroup>
- <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

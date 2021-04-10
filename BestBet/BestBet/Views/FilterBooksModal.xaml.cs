@@ -29,9 +29,14 @@ namespace BestBet.Views
 
         async void CheckBox_CheckedChanged(System.Object sender, Xamarin.Forms.CheckedChangedEventArgs e)
         {
-            var book = (Book)((CheckBox)sender).BindingContext;
-            
-            await App.Database.SaveBookAsync(book);
+            try { 
+                var book = (Book)((CheckBox)sender).BindingContext;
+                await App.Database.SaveBookAsync(book);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
     }
 }
