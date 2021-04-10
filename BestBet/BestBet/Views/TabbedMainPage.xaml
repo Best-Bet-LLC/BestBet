@@ -6,13 +6,11 @@
             mc:Ignorable="d"
              xmlns:viewmodel="clr-namespace:BestBet.ViewModels" 
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
-             xmlns:sho="http://sharpnado.com"
+             
              xmlns:views="clr-namespace:BestBet.Views"
-             
-             xmlns:xamEffects="clr-namespace:XamEffects;assembly=XamEffects"
-             
+             xmlns:xamEffects="clr-namespace:XamEffects;assembly=XamEffects" xmlns:sho="http://sharpnado.com"
              xmlns:Forms9Patch="clr-namespace:Forms9Patch;assembly=Forms9Patch"
-            ios:Page.UseSafeArea="true"
+             ios:Page.UseSafeArea="true"
              x:Class="BestBet.Views.TabbedMainPage"
              Visual="Material"
              BackgroundColor="{StaticResource Background_Gray}"

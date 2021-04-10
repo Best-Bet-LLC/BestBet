@@ -27,12 +27,12 @@
     <PackageReference Include="Sharpnado.Tabs" Version="2.1.0" />
     <PackageReference Include="XamEffects" Version="1.6.3" />
     <PackageReference Include="Forms9Patch" Version="2.4.9" />
-    <PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie" Version="4.0.8" />
-    <PackageReference Include="AWSSDK.CognitoIdentity" Version="3.5.2.19" />
-    <PackageReference Include="AWSSDK.Core" Version="3.5.3.8" />
-    <PackageReference Include="AWSSDK.CognitoSync" Version="3.5.0.78" />
-    <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.5.4.37" />
-    <PackageReference Include="AWSSDK.SimpleNotificationService" Version="3.5.1.50" />
+    <PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie" Version="4.0.9" />
+    <PackageReference Include="AWSSDK.CognitoIdentity" Version="3.7.0.9" />
+    <PackageReference Include="AWSSDK.Core" Version="3.7.0.10" />
+    <PackageReference Include="AWSSDK.CognitoSync" Version="3.7.1.5" />
+    <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.7.0.10" />
+    <PackageReference Include="AWSSDK.SimpleNotificationService" Version="3.7.0.10" />
     <PackageReference Include="Xamarin.Facebook.iOS" Version="9.0.1.5" />
   </ItemGroup>
   <ItemGroup>
