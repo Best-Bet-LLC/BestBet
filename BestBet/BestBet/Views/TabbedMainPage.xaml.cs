@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 using BestBet.ViewModels;
 using BestBet.Views;
 using SQLite;
-
-using Sharpnado.Presentation.Forms.CustomViews;
+using Sharpnado.HorizontalListView;
 using Sharpnado.Tabs;
 using Sharpnado.HorizontalListView.RenderedViews;
 using Xamarin.Forms;

@@ -14,11 +14,14 @@ namespace BestBet.Services
         }
 
         private static readonly string API_KEY = "b08ff565ec8d09f66946738f80169f8b";
+        private static readonly string API_KEY_FREE = "696d8415af0154c327fdbda3455dcc83";
+
+        
 
 
         public async Task<ObservableCollection<Sport>> getSports()
         {
-            string url = $"https://api.the-odds-api.com/v3/sports?apiKey={API_KEY}";
+            string url = $"https://api.the-odds-api.com/v3/sports?apiKey={API_KEY_FREE}";
 
             HttpClient client = new HttpClient();
 
@@ -41,7 +44,7 @@ namespace BestBet.Services
 
         public async Task<ObservableCollection<Match>> getOdds(string title, string region)
         {
-            string url = $"https://api.the-odds-api.com/v3/odds/?sport={title}&region={region}&apiKey={API_KEY}";
+            string url = $"https://api.the-odds-api.com/v3/odds/?sport={title}&region={region}&apiKey={API_KEY_FREE}";
 
             HttpClient client = new HttpClient();
 
@@ -65,7 +68,7 @@ namespace BestBet.Services
 
         //public async Task<ObservableCollection<SpreadsMatch>> getSpreads(string title, string region)
         //{
-        //    string url = $"https://api.the-odds-api.com/v3/odds/?sport={title}&region={region}&mkt=spreads&apiKey={API_KEY}";
+        //    string url = $"https://api.the-odds-api.com/v3/odds/?sport={title}&region={region}&mkt=spreads&apiKey={API_KEY_FREE}";
 
         //    HttpClient client = new HttpClient();
 
